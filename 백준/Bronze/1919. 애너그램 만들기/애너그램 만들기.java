@@ -11,15 +11,15 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String a = sc.next();
-        String b = sc.next();
+        String word = sc.next();
+        String word2 = sc.next();
 
-        int[] countA = getAlphabetCount(a); // dared: [1, 0, 0, 2 .. ]
-        int[] countB = getAlphabetCount(b);
+        int[] countA = getAlphabetCount(word);
+        int[] countB = getAlphabetCount(word2);
 
         int ans = 0;
         for (int i = 0; i < 26; i++){
-            ans += Math.abs(countA[i] - countB[i]); // 절대값
+            ans += Math.abs(countA[i] - countB[i]);
         }
         System.out.println(ans);
     }
