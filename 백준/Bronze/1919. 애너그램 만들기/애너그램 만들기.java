@@ -1,31 +1,26 @@
 import java.util.Scanner;
 
 public class Main {
+    public static int[] getAlphabetCount(String str){
+        int[] count = new int[26];
+        for (int i = 0; i < str.length(); i++){
+            count[str.charAt(i) - 'a']++;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        char[] word = sc.next().toCharArray();
-        char[] word2 = sc.next().toCharArray();
+        String a = sc.next();
+        String b = sc.next();
 
-        for(int i = 0; i < word.length; i++){
-            for(int j = 0; j < word2.length; j++){
-                if(word[i] == word2[j]){
-                    word[i] = ' ';
-                    word2[j] = ' ';
-                }
-            }
-        }
+        int[] countA = getAlphabetCount(a); // dared: [1, 0, 0, 2 .. ]
+        int[] countB = getAlphabetCount(b);
 
-        int sum = 0;
-        for(int i : word){
-            if(i != ' '){
-                sum += 1;
-            }
+        int ans = 0;
+        for (int i = 0; i < 26; i++){
+            ans += Math.abs(countA[i] - countB[i]); // 절대값
         }
-        for(int i : word2){
-            if(i != ' '){
-                sum += 1;
-            }
-        }
-        System.out.println(sum);
+        System.out.println(ans);
     }
 }
