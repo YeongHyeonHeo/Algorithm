@@ -9,7 +9,6 @@ public class Main {
         N = scan.nextInt();
         M = scan.nextInt();
         selected = new int[M + 1];
-        used = new int[N + 1];
     }
 
     static int N, M;
