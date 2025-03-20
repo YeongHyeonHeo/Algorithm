@@ -18,9 +18,7 @@ public class Main {
         if (k == N + 1) {
             if (value == S) ans++;
         } else {
-            // Include
             rec_func(k + 1, value + nums[k]);
-            // Not Include
             rec_func(k + 1, value);
         }
     }
@@ -28,10 +26,7 @@ public class Main {
     public static void main(String[] args) {
         input();
         rec_func(1, 0);
-        // ans 가 정말 "진 부분집합"만 다루는지 확인하기
-        if (S == 0) {
-            ans--;
-        }
+        if (S == 0) ans--;
         System.out.println(ans);
     }
 
