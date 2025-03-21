@@ -5,28 +5,37 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
+    static class Elem implements Comparable<Elem> {
+
+        int num, idx;
+
+        @Override
+        public int compareTo(Elem other) {
+            // 오름차순
+            return num - other.num;
+            // Stable Sort -> idx는 굳이 비교 X
+        }
+    }
+
     static void input() {
         N = scan.nextInt();
-        A = new int[N];
-        for (int i = 0; i < N; i++) A[i] = scan.nextInt();
-        B = new int[N];
         P = new int[N];
+        B = new Elem[N];
+        for (int i = 0; i < N; i++) {
+            B[i] = new Elem();
+            B[i].num = scan.nextInt();
+            B[i].idx = i;
+        }
     }
 
     static int N;
-    static int[] A, B, P;
+    static int[] P;
+    static Elem[] B;
 
-    static void ans() {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++){
-                if (A[i] == B[j]) {
-                    for (int k = 0; k < N; k++) {
-                        if (P[k] != j) P[i] = j;
-                        B[j] = -1;
-                    }
-                    break;
-                }
-            }
+    static void pro() {
+        Arrays.sort(B);
+        for (int b_idx = 0; b_idx < N; b_idx++) {
+            P[B[b_idx].idx] = b_idx;
         }
         for (int i = 0; i < N; i++) sb.append(P[i]).append(' ');
         System.out.println(sb.toString());
@@ -34,9 +43,7 @@ public class Main {
 
     public static void main(String[] args) {
         input();
-        B = A.clone();
-        Arrays.sort(B);
-        ans();
+        pro();
     }
 
     static class FastReader {
