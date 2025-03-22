@@ -27,12 +27,12 @@ public class Main {
         for (int i = 2; i <= N; i++) {
             if (a[i] == a[i-1]) {
                 curCnt++;
-                if (curCnt > modeCnt) {
-                    modeCnt++;
-                    mode = a[i];
-                }
             } else {
                 curCnt = 1;
+            }
+            if (curCnt > modeCnt) {
+                modeCnt = curCnt;
+                mode = a[i];
             }
         }
         System.out.println(mode);
