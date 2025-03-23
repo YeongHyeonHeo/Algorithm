@@ -6,31 +6,18 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static int[] A;
+    static HashMap<Integer, Integer> map = new HashMap<>();
 
     static void input() {
         N = scan.nextInt();
-        A = new int[N + 1];
-        for (int i = 1; i <= N; i++) A[i] = scan.nextInt();
-    }
-
-    static boolean bin_search(int[] A, int L, int R, int X) {
-        while (L <= R) {
-            int mid = (L + R) / 2;
-            if (A[mid] == X) return true;
-            else if (A[mid] < X) L = mid + 1;
-            else R = mid - 1;
-        }
-        return false;
+        for (int i = 0 ; i < N; i++) map.put(scan.nextInt(), 1);
     }
 
     static void pro() {
         int M = scan.nextInt();
-        Arrays.sort(A, 1, N + 1);
-        for (int i = 1; i <= M; i++) {
-            int X = scan.nextInt();
-            if (bin_search(A, 1, N, X)) sb.append(1).append('\n');
-            else sb.append(0).append('\n');
+        for (int i = 0; i < M; i++) {
+            if (map.getOrDefault(scan.nextInt(), 0) == 1) sb.append(1).append("\n");
+            else sb.append(0).append("\n");
         }
         System.out.println(sb);
     }
