@@ -5,37 +5,34 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, M;
-    static int[] A, B;
+    static int N;
+    static int[] A;
 
     static void input() {
         N = scan.nextInt();
         A = new int[N + 1];
         for (int i = 1; i <= N; i++) A[i] = scan.nextInt();
-        M = scan.nextInt();
-        B = new int[M + 1];
-        for (int i = 1; i <= M; i++) B[i] = scan.nextInt();
     }
 
-    static int contain(int[] A, int L, int R, int X) {
-        int res = 0;
+    static boolean bin_search(int[] A, int L, int R, int X) {
         while (L <= R) {
             int mid = (L + R) / 2;
-            if (A[mid] < X) L = mid + 1;
-            else if (A[mid] > X) R = mid - 1;
-            else {
-                res = 1;
-                break;
-            }
+            if (A[mid] == X) return true;
+            else if (A[mid] < X) L = mid + 1;
+            else R = mid - 1;
         }
-        return res;
+        return false;
     }
 
     static void pro() {
+        int M = scan.nextInt();
         Arrays.sort(A, 1, N + 1);
         for (int i = 1; i <= M; i++) {
-            System.out.println(contain(A, 1, N, B[i]));
+            int X = scan.nextInt();
+            if (bin_search(A, 1, N, X)) sb.append(1).append('\n');
+            else sb.append(0).append('\n');
         }
+        System.out.println(sb);
     }
 
     public static void main(String[] args) {
