@@ -30,7 +30,7 @@ public class Main {
         int L = 0, R = 1000000000, ans = 0;
         while (L <= R) {
             int mid = (L + R) / 2;
-            if (determination((int)mid)) {
+            if (determination(mid)) {
                 ans = mid;
                 L = mid + 1;
             }
