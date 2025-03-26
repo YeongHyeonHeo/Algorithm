@@ -17,10 +17,8 @@ public class Main {
 
     static boolean determination(long len) {
         long sum = 0;
-        for (int i = 1; i <= K; i++) {
-            if (A[i] >= len) sum += A[i] / len;
-        }
-        return sum >= N;
+        for (int i = 1; i <= K; i++) sum += A[i] / len;
+        return sum >=  N;
     }
 
     static void pro() {
