@@ -21,12 +21,17 @@ public class Main {
             for (int i = 1; i <= N; i++) {
                 person += A[i] / size;
             }
+        } else {
+            for (int i = 1; i <= N; i++) {
+                person += A[i];
+            }
         }
         return person >= K;
     }
 
     static void pro() {
-        long L = 0, R = Integer.MAX_VALUE, ans = 0;
+        long L = 0, R = 0, ans = 0;
+        for (int i = 1; i <= N; i++) R = Math.max(R, A[i]);
         while (L <= R) {
             long mid = (L + R) / 2;
             if (determination(mid)) {
