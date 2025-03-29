@@ -5,33 +5,27 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, X;
-    static int[] A;
+    static int n, x;
+    static int[] a;
 
     static void input() {
-        N = scan.nextInt();
-        A = new int[N + 1];
-        for (int i = 1; i <= N; i++) A[i] = scan.nextInt();
-        X = scan.nextInt();
-    }
-
-    static boolean bin_search(int[] A, int L, int R, int num) {
-        while (L <= R) {
-            int mid = (L + R) / 2;
-            if (A[mid] + num == X) return true;
-            else if (A[mid] + num < X) L = mid + 1;
-            else R = mid - 1;
-        }
-        return false;
+        n = scan.nextInt();
+        a = new int[n + 1];
+        for (int i = 1; i <= n; i++) a[i] = scan.nextInt();
+        x = scan.nextInt();
     }
 
     static void pro() {
-        Arrays.sort(A, 1, N + 1);
-        int cnt = 0;
-        for (int i = 1; i <= N; i++) {
-            if (bin_search(A, i+1, N, A[i])) cnt++;
+        Arrays.sort(a, 1, n + 1);
+        int L = 1, R = n, ans = 0;
+        while (L < R) {
+            if (a[L] + a[R] == x) {
+                L++; R--;
+                ans++;
+            } else if (a[L] + a[R] > x) R--;
+            else L++;
         }
-        System.out.println(cnt);
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {
