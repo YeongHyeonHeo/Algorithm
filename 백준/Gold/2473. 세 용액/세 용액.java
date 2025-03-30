@@ -24,8 +24,9 @@ public class Main {
             int target = -A[i];
             int L = i + 1, R = N;
             while (L < R) {
-                if (Math.abs(-(long)target + A[L] + A[R]) < best_sum) {
-                    best_sum = Math.abs(-(long)target + A[L] + A[R]);
+                long sum = -(long)target + A[L] + A[R];
+                if (Math.abs(sum) < best_sum) {
+                    best_sum = Math.abs(sum);
                     v1 = -target;
                     v2 = A[L];
                     v3 = A[R];
