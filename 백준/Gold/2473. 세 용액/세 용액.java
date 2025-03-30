@@ -21,17 +21,17 @@ public class Main {
         int v1 = 0, v2 = 0, v3 = 0;
 
         for (int i = 1; i <= N - 2; i++) {
-            int target = -A[i];
+            int target = A[i];
             int L = i + 1, R = N;
             while (L < R) {
-                long sum = -(long)target + A[L] + A[R];
+                long sum = (long)target + A[L] + A[R];
                 if (Math.abs(sum) < best_sum) {
                     best_sum = Math.abs(sum);
-                    v1 = -target;
+                    v1 = target;
                     v2 = A[L];
                     v3 = A[R];
                 }
-                if (A[L] + A[R] > target) R--;
+                if (sum > 0) R--;
                 else L++;
             }
         }
