@@ -14,19 +14,15 @@ public class Main {
         M = scan.nextInt();
         V = scan.nextInt();
         adj = new ArrayList[N + 1];
-        for (int i = 1; i <= N; i++) {
-            adj[i] = new ArrayList<>();
-        }
+        for (int i = 1; i <= N; i++) adj[i] = new ArrayList<>();
         for (int i = 0; i < M; i++) {
             int x = scan.nextInt(), y = scan.nextInt();
             adj[x].add(y);
             adj[y].add(x);
         }
-        for (int i = 1; i <= N; i++) {
-            Collections.sort(adj[i]);
-        }
+        for (int i = 1; i <= N; i++) Collections.sort(adj[i]);
     }
-    
+
     static void dfs(int x) {
         visit[x] = true;
         sb.append(x).append(' ');
@@ -38,7 +34,6 @@ public class Main {
 
     static void bfs(int start) {
         Queue<Integer> que = new LinkedList<>();
-
         que.add(start);
         visit[start] = true;
 
@@ -47,7 +42,6 @@ public class Main {
             sb.append(x).append(' ');
             for (int y : adj[x]) {
                 if (visit[y]) continue;
-
                 que.add(y);
                 visit[y] = true;
             }
