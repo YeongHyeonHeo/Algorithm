@@ -19,23 +19,14 @@ public class Main {
         visit = new boolean[N + 1][M + 1];
     }
 
-    static void bfs(int x1, int y1) {
-        Queue<Integer> Q = new LinkedList<>();
-        Q.add(x1);
-        Q.add(y1);
-        visit[x1][y1] = true;
-
-        while (!Q.isEmpty()) {
-            int x = Q.poll(), y = Q.poll();
-            for (int k = 0; k < 4; k++) {
-                int nx = x + dir[k][0], ny = y + dir[k][1];
-                if (nx < 0 || ny < 0 || nx > N || ny > M) continue;
-                if (a[nx][ny] != 0) continue;
-                if (visit[nx][ny]) continue;
-                Q.add(nx);
-                Q.add(ny);
-                visit[nx][ny] = true;
-            }
+    static void dfs2(int x, int y) {
+        visit[x][y] = true;
+        for (int k = 0; k < 4; k++) {
+            int nx = x + dir[k][0], ny = y + dir[k][1];
+            if (nx < 0 || ny < 0 || nx > N || ny > M) continue;
+            if (a[nx][ny] != 0) continue;
+            if (visit[nx][ny]) continue;
+            dfs2(nx, ny);
         }
     }
 
@@ -44,7 +35,7 @@ public class Main {
             ans = 0;
             for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) visit[i][j] = false;
             for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
-                if (a[i][j] == 2) bfs(i ,j);
+                if (a[i][j] == 2) dfs2(i ,j);
             }
             for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
                 if (!visit[i][j] && a[i][j] == 0) ans++;
