@@ -5,93 +5,77 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, M, B, ans;
-    static int[][] A, blank;
+    static int N, M, B, ans, maxAns;
+    static int[][] a, blank;
+    static int[][] dir = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     static boolean[][] visit;
-    static int[][] dir = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-
 
     static void input() {
         N = scan.nextInt();
         M = scan.nextInt();
-        A = new int[N + 1][M + 1];
+        a = new int[N + 1][M + 1];
         blank = new int[N * M + 1][2];
+        for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) a[i][j] = scan.nextInt();
         visit = new boolean[N + 1][M + 1];
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= M; j++) {
-                A[i][j] = scan.nextInt();
-            }
-        }
     }
 
-    // 바이러스 퍼뜨리기
     static void bfs() {
         Queue<Integer> Q = new LinkedList<>();
-
-        // 모든 바이러스가 시작점으로 가능하니까, 전부 큐에 넣어준다
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= M; j++) {
-                visit[i][j] = false;
-                if (A[i][j] == 2) {
-                    Q.add(i);
-                    Q.add(j);
-                    visit[i][j] = true;
-                }
+        for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
+            visit[i][j] = false;
+            if (a[i][j] == 2) {
+                Q.add(i);
+                Q.add(j);
+                visit[i][j] = true;
             }
         }
 
-        // BFS 과정
         while (!Q.isEmpty()) {
             int x = Q.poll(), y = Q.poll();
             for (int k = 0; k < 4; k++) {
                 int nx = x + dir[k][0], ny = y + dir[k][1];
-                if (nx < 1 || ny < 1 || nx > N || ny > M) continue;
-                if (A[nx][ny] != 0) continue;
+                if (nx < 0 || ny < 0 || nx > N || ny > M) continue;
+                if (a[nx][ny] != 0) continue;
                 if (visit[nx][ny]) continue;
-                visit[nx][ny] = true;
                 Q.add(nx);
                 Q.add(ny);
+                visit[nx][ny] = true;
             }
         }
-
-        // 탐색이 종료된 시점이니, 안전 영역의 넓이를 계산하고, 정답 갱신
-        int cnt = 0;
         for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
-            if (A[i][j] == 0 && !visit[i][j]) cnt++;
+            if (!visit[i][j] && a[i][j] == 0) ans++;
         }
-        ans = Math.max(ans, cnt);
     }
 
-    // idx번째 빈 칸에 벽을 세울지 말지 결정, 이 전까지 selected_cnt개의 벽을 세웠다
     static void dfs(int idx, int selected_cnt) {
-        if (selected_cnt == 3) {  // 3개의 벽을 모두 세운 상태
+        if (selected_cnt == 3) {
+            ans = 0;
             bfs();
+            maxAns = Math.max(maxAns, ans);
             return;
         }
-        if (idx > B) return; // 더 이상 세울 수 있는 벽이 없는 상태
+        if (idx > B) return;
 
-        A[blank[idx][0]][blank[idx][1]] = 1;
+        a[blank[idx][0]][blank[idx][1]] = 1;
         dfs(idx + 1, selected_cnt + 1);
 
-        A[blank[idx][0]][blank[idx][1]] = 0;
+        a[blank[idx][0]][blank[idx][1]] = 0;
         dfs(idx + 1, selected_cnt);
     }
 
     static void pro() {
-        // 모든 공간의 위치를 먼저 모아놓자
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= M; j++) {
-                if (A[i][j] == 0) {
-                    B++;
-                    blank[B][0] = i;
-                    blank[B][1] = j;
-                }
+        // 빈칸 수
+        for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
+            if (a[i][j] == 0) {
+                B++;
+                blank[B][0] = i;
+                blank[B][1] = j;
             }
         }
 
-        // 벽을 3개 세우는 모든 방법을 확인
+        // 벽 세우기
         dfs(1, 0);
-        System.out.println(ans);
+        System.out.println(maxAns);
     }
 
     public static void main(String[] args) {
@@ -131,7 +115,7 @@ public class Main {
         }
 
         String nextLine() {
-            String str = "";
+            String str =  "";
             try {
                 str = br.readLine();
             } catch (IOException e) {
