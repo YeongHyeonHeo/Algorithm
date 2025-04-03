@@ -19,16 +19,11 @@ public class Main {
         visit = new boolean[N + 1][M + 1];
     }
 
-    static void bfs() {
+    static void bfs(int x1, int y1) {
         Queue<Integer> Q = new LinkedList<>();
-        for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
-            visit[i][j] = false;
-            if (a[i][j] == 2) {
-                Q.add(i);
-                Q.add(j);
-                visit[i][j] = true;
-            }
-        }
+        Q.add(x1);
+        Q.add(y1);
+        visit[x1][y1] = true;
 
         while (!Q.isEmpty()) {
             int x = Q.poll(), y = Q.poll();
@@ -42,15 +37,18 @@ public class Main {
                 visit[nx][ny] = true;
             }
         }
-        for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
-            if (!visit[i][j] && a[i][j] == 0) ans++;
-        }
     }
 
     static void dfs(int idx, int selected_cnt) {
         if (selected_cnt == 3) {
             ans = 0;
-            bfs();
+            for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) visit[i][j] = false;
+            for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
+                if (a[i][j] == 2) bfs(i ,j);
+            }
+            for (int i = 1; i <= N; i++) for (int j = 1; j <= M; j++) {
+                if (!visit[i][j] && a[i][j] == 0) ans++;
+            }
             maxAns = Math.max(maxAns, ans);
             return;
         }
