@@ -1,3 +1,4 @@
+import javax.imageio.plugins.tiff.FaxTIFFTagSet;
 import java.io.*;
 import java.util.*;
 
@@ -13,7 +14,9 @@ public class Main {
         N = scan.nextInt();
         adj = new int[N + 1][N + 1];
         for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= N; j++) adj[i][j] = scan.nextInt();
+            for (int j = 1; j <= N; j++) {
+                adj[i][j] = scan.nextInt();
+            }
         }
     }
 
@@ -21,7 +24,6 @@ public class Main {
         Queue<Integer> que = new LinkedList<>();
         for (int i = 1; i <= N; i++) visit[i] = false;
         que.add(start);
-        visit[start] = false;
 
         while (!que.isEmpty()) {
             int x = que.poll();
@@ -32,9 +34,7 @@ public class Main {
                 visit[y] = true;
             }
         }
-        for (int i = 1; i <= N; i++) {
-            sb.append(visit[i] ? 1 : 0).append(' ');
-        }
+        for (int i = 1; i <= N; i++) sb.append(visit[i] ? 1 : 0).append(' ');
         sb.append('\n');
     }
 
@@ -81,7 +81,7 @@ public class Main {
         }
 
         String nextLine() {
-            String str = "";
+            String str =  "";
             try {
                 str = br.readLine();
             } catch (IOException e) {
