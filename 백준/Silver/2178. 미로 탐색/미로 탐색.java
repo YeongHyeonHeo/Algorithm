@@ -8,16 +8,13 @@ public class Main {
     static int N, M;
     static String[] a;
     static int[][] dist;
-    static boolean[][] visit;
     static int[][] dir = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-    static ArrayList<Integer> group;
 
     static void input() {
         N = scan.nextInt();
         M = scan.nextInt();
         a = new String[N];
         for (int i = 0; i < N; i++) a[i] = scan.nextLine();
-        visit = new boolean[N][M];
         dist = new int[N][M];
     }
 
@@ -32,7 +29,6 @@ public class Main {
         Q.add(x);
         Q.add(y);
         dist[x][y] = 1;
-        visit[x][y] = true;
 
         // BFS 과정 시작
         while (!Q.isEmpty()) {
@@ -43,10 +39,9 @@ public class Main {
                 int ny = y + dir[k][1];
                 if (nx < 0 || ny < 0 || nx >= N || ny >= M) continue;
                 if (a[nx].charAt(ny) == '0') continue;
-                if (visit[nx][ny]) continue;
+                if (dist[nx][ny] != -1) continue;
                 Q.add(nx);
                 Q.add(ny);
-                visit[nx][ny] = true;
                 dist[nx][ny] = dist[x][y] + 1;
             }
         }
