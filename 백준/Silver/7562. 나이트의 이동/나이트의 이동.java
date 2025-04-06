@@ -6,7 +6,7 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int T, N, X, Y, wantX, wantY;
-    static int[][] A, dist;
+    static int[][] dist;
     static int[][] dir = {{-2, -1}, {-1, -2}, {2, 1}, {1, 2},
             {2, -1}, {1, -2}, {-2, 1}, {-1, 2}};
 
@@ -16,7 +16,6 @@ public class Main {
         Y = scan.nextInt();
         wantX = scan.nextInt();
         wantY = scan.nextInt();
-        A = new int[N][N];
         dist = new int[N][N];
     }
 
