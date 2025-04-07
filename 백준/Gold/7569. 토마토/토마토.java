@@ -7,7 +7,8 @@ public class Main {
 
     static int M, N, H;
     static int[][][] A, dist;
-    static int[][] dir;
+    static int[][] dir = {{0, 1, 0}, {0, -1, 0}, {0, 0, 1}, {0, 0, -1},
+            {1, 0, 0}, {-1, 0, 0}};
 
     static void input() {
         M = scan.nextInt();
@@ -20,8 +21,6 @@ public class Main {
             }
         }
         dist = new int[H][N][M];
-        dir = new int[][]{{0, 1, 0}, {0, -1, 0}, {0, 0, 1}, {0, 0, -1},
-                {1, 0, 0}, {-1, 0, 0}};
     }
 
     static void bfs() {
