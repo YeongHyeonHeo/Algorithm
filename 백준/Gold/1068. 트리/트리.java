@@ -5,14 +5,12 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int n, root, erased;
+    static int n, root, erased, ans;
     static ArrayList<Integer>[] child;
-    static int[] leaf;
 
     static void input() {
         n = scan.nextInt();
         child = new ArrayList[n];
-        leaf = new int[n];
         for (int i = 0; i < n; i++) child[i] = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             int par = scan.nextInt();
@@ -25,14 +23,12 @@ public class Main {
         erased = scan.nextInt();
     }
 
-    // 정점 x의 부모가 par였고, Subtree(x)의 leaf 개수를 세주는 함수
     static void dfs(int x) {
         if (child[x].isEmpty()) {
-            leaf[x] = 1;
+            ans++;
         }
         for (int y : child[x]) {
             dfs(y);
-            leaf[x] += leaf[y];
         }
     }
 
@@ -48,7 +44,7 @@ public class Main {
         if (root != erased) dfs(root);
 
         // 정답 출력
-        System.out.println(leaf[root]);
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {
