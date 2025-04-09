@@ -10,14 +10,16 @@ public class Main {
 
     static void input() {
         N = scan.nextInt();
-        childs = new int[30][2];
+        childs = new int[N][2];
         for (int i = 0; i < N; i++) {
-            char curCh = scan.next().charAt(0);
-            int cur = curCh - 'A';
+            char ch = scan.next().charAt(0);
+            int node = ch - 'A';
             for (int j = 0; j < 2; j++) {
-                char ch = scan.next().charAt(0);
-                if (ch != '.') childs[cur][j] = ch - 'A';
-                else childs[cur][j] = -1;
+                char childCh = scan.next().charAt(0);
+                if (childCh != '.') {
+                    int childNode = childCh - 'A';
+                    childs[node][j] = childNode;
+                } else childs[node][j] = -1;
             }
         }
     }
@@ -49,7 +51,6 @@ public class Main {
         in_order(0);
         sb.append('\n');
         post_order(0);
-
         System.out.println(sb);
     }
 
