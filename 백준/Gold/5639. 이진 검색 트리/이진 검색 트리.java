@@ -8,17 +8,18 @@ public class Main {
     static ArrayList<Integer> a;
 
     static void input() {
-        String input;
         a = new ArrayList<>();
+        String input;
         while ((input = scan.nextLine()) != null) {
-            a.add(Integer.parseInt(input));
+            int node = Integer.parseInt(input);
+            a.add(node);
         }
     }
 
     static void traverse(int l, int r) {
         if (l > r) return;
         int mid = r;
-        for (int i = l + 1; i <= r; i++) {
+        for (int i = l; i <= r; i++) {
             if (a.get(i) > a.get(l)) {
                 mid = i - 1;
                 break;
@@ -31,7 +32,7 @@ public class Main {
     }
 
     static void pro() {
-        traverse(0, a.size() - 1);
+        traverse(0, a.size()-1);
         System.out.println(sb);
     }
 
