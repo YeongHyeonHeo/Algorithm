@@ -6,23 +6,22 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int N, sum_leaf_depth;
-    static ArrayList<Integer>[] a;
+    static ArrayList<Integer>[] adj;
 
     static void input() {
         N = scan.nextInt();
-        a = new ArrayList[N + 1];
-        for (int i = 1; i <= N; i++) a[i] = new ArrayList<>();
+        adj = new ArrayList[N + 1];
+        for (int i = 1; i <= N; i++) adj[i] = new ArrayList<>();
         for (int i = 1; i < N; i++) {
             int x = scan.nextInt(), y = scan.nextInt();
-            a[x].add(y);
-            a[y].add(x);
+            adj[x].add(y);
+            adj[y].add(x);
         }
     }
 
-    // 트리를 순회하면서 sum_leaf_depth 계산
     static void dfs(int x, int prev, int depth) {
-        if (a[x].size() == 1) sum_leaf_depth += depth;
-        for (int y : a[x]) {
+        if (x != 1 && adj[x].size() == 1) sum_leaf_depth += depth;
+        for (int y : adj[x]) {
             if (y == prev) continue;
             dfs(y, x, depth + 1);
         }
