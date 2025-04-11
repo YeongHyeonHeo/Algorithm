@@ -5,23 +5,22 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, M;
-    static int[] indeg, T_done, T;
+    static int N, K;
     static ArrayList<Integer>[] adj;
+    static int[] indeg, time, time_done;
 
     static void input() {
-        // Testcase가 존재하는 문제 -> "배열 초기화" 유의
         N = scan.nextInt();
-        M = scan.nextInt();
+        K = scan.nextInt();
         adj = new ArrayList[N + 1];
         indeg = new int[N + 1];
-        T = new int[N + 1];
-        T_done = new int[N + 1];
+        time = new int[N + 1];
+        time_done = new int[N + 1];
         for (int i = 1; i <= N; i++) {
             adj[i] = new ArrayList<>();
-            T[i] = scan.nextInt();
+            time[i] = scan.nextInt();
         }
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < K; i++) {
             int x = scan.nextInt(), y = scan.nextInt();
             adj[x].add(y);
             indeg[y]++;
@@ -29,31 +28,31 @@ public class Main {
     }
 
     static void pro() {
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> que = new LinkedList<>();
         for (int i = 1; i <= N; i++) {
             if (indeg[i] == 0) {
-                queue.add(i);
-                T_done[i] = T[i];
+                que.add(i);
+                time_done[i] = time[i];
             }
         }
 
-        // 위상 정렬 순서대로 T_done 계산을 함께 해주기
-        while (!queue.isEmpty()) {
-            int x = queue.poll();
+        while (!que.isEmpty()) {
+            int x = que.poll();
             for (int y : adj[x]) {
                 indeg[y]--;
-                if (indeg[y] == 0) queue.add(y);
-                T_done[y] = Math.max(T_done[y], T_done[x] + T[y]);
+                if (indeg[y] == 0) que.add(y);
+                time_done[y] = Math.max(time_done[y], time_done[x] + time[y]);
             }
         }
+
         int W = scan.nextInt();
-        System.out.println(T_done[W]);
+        System.out.println(time_done[W]);
     }
 
     public static void main(String[] args) {
-        int Q = scan.nextInt();
-        while (Q > 0) {
-            Q--;
+        int T = scan.nextInt();
+        while (T > 0) {
+            T--;
             input();
             pro();
         }
