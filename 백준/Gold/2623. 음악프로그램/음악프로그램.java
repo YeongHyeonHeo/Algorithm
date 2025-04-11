@@ -28,24 +28,23 @@ public class Main {
 
     static void pro() {
         Queue<Integer> que = new LinkedList<>();
-        Queue<Integer> res = new LinkedList<>();
         for (int i = 1; i <= N; i++) {
             if (indeg[i] == 0) que.add(i);
         }
 
+        ArrayList<Integer> ans = new ArrayList<>();
         while (!que.isEmpty()) {
             int x = que.poll();
-            res.add(x);
+            ans.add(x);
             for (int y : adj[x]) {
                 indeg[y]--;
                 if (indeg[y] == 0) que.add(y);
             }
         }
 
-        if (res.size() < N) sb.append(0);
-        else {
-            for (int i : res) sb.append(i).append('\n');
-        }
+        if (ans.size() == N)
+            for (int x : ans) sb.append(x).append('\n');
+        else sb.append(0);
         System.out.println(sb);
     }
 
