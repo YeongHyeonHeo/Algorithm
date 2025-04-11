@@ -23,22 +23,17 @@ public class Main {
     }
 
     static void pro() {
-        Queue<Integer> queue = new LinkedList<>();
-        // 제일 앞에 "정렬될 수 있는" 정점 찾기
+        Queue<Integer> que = new LinkedList<>();
         for (int i = 1; i <= N; i++) {
-            if (indeg[i] == 0) queue.add(i);
+            if (indeg[i] == 0) que.add(i);
         }
 
-        // 정렬될 수 있는 정점이 있다면?
-        // 1. 정렬 결과에 추가
-        // 2. 정점과 연결된 간선 제거
-        // 3. 새롭게 "정렬될 수 있는" 정점 큐에 추가
-        while (!queue.isEmpty()) {
-            int x = queue.poll();
+        while (!que.isEmpty()) {
+            int x = que.poll();
             sb.append(x).append(' ');
             for (int y : adj[x]) {
                 indeg[y]--;
-                if (indeg[y] == 0) queue.add(y);
+                if (indeg[y] == 0) que.add(y);
             }
         }
         System.out.println(sb);
