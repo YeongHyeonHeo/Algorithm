@@ -5,13 +5,13 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int n, Q;
+    static int N, Q;
     static boolean[] estate;
 
     static void input() {
-        n = scan.nextInt();
+        N = scan.nextInt();
         Q = scan.nextInt();
-        estate = new boolean[n + 1];
+        estate = new boolean[N + 1];
     }
 
     static void pro() {
