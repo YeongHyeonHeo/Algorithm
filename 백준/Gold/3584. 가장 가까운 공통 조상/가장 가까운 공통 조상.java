@@ -6,31 +6,26 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static int[] parent;
+    static int[] par;
     static boolean[] check;
 
     static void input() {
         N = scan.nextInt();
-        parent = new int[N + 1];
+        par = new int[N + 1];
         check = new boolean[N + 1];
-        for (int i = 1; i < N; i++) {
+        for (int i = 0; i < N - 1; i++) {
             int x = scan.nextInt(), y = scan.nextInt();
-            parent[y] = x;
+            par[y] = x;
         }
     }
 
     static void pro() {
         int x = scan.nextInt(), y = scan.nextInt();
-
-        // x 에서 루트까지 체크
         while (x != 0) {
             check[x] = true;
-            x = parent[x];
+            x = par[x];
         }
-
-        // y 에서 루트로 이동하면서 처음으로 만나는 체크된 정점
-        while (!check[y]) y = parent[y];
-
+        while (!check[y]) y = par[y];
         System.out.println(y);
     }
 
