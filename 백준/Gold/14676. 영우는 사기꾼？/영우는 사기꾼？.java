@@ -29,26 +29,18 @@ public class Main {
         boolean abnormal = false;
         while (K > 0) {
             K--;
-            int t = scan.nextInt(), x = scan.nextInt();
-            if (t == 1) {
-                // x 의 선행 건물들이 모두 지어졌는지 확인
-                if (satisfaction[x] < indeg[x]) abnormal = true;
-
-                cnt[x]++;
-
-                // x 가 처음 지어진 것이라면 x 가 영향을 주는 건물들에게 알려주기
-                if (cnt[x] == 1) {
-                    for (int y : adj[x]) satisfaction[y]++;
+            int x = scan.nextInt(), y = scan.nextInt();
+            if (x == 1) {
+                if (satisfaction[y] < indeg[y]) abnormal = true;
+                cnt[y]++;
+                if (cnt[y] == 1) {
+                    for (int i : adj[y]) satisfaction[i]++;
                 }
             } else {
-                // x 라는 건물이 한 개 이상 지어져 있는지 확인
-                if (cnt[x] == 0) abnormal = true;
-
-                cnt[x]--;
-
-                // x 가 더 이상 남아있지 않다면 알려주기
-                if (cnt[x] == 0) {
-                    for (int y : adj[x]) satisfaction[y]--;
+                if (cnt[y] == 0) abnormal = true;
+                cnt[y]--;
+                if (cnt[y] == 0) {
+                    for (int i : adj[y]) satisfaction[i]--;
                 }
             }
         }
