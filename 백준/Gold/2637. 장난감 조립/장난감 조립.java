@@ -43,11 +43,12 @@ public class Main {
 
         while (!que.isEmpty()) {
             int x = que.poll();
-            for (Info y : adj[x]) {
-                indeg[y.x]--;
-                if (indeg[y.x] == 0) que.add(y.x);
+            for (Info info : adj[x]) {
+                int y = info.x, k = info.k;
+                indeg[y]--;
+                if (indeg[y] == 0) que.add(y);
                 for (int i = 1; i <= N; i++) {
-                    cnt[y.x][i] += cnt[x][i] * y.k;
+                    cnt[y][i] += cnt[x][i] * k;
                 }
             }
         }
