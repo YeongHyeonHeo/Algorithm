@@ -25,23 +25,6 @@ public class Main {
     static ArrayList<Edge>[] edges;
     static int[] dist;
 
-    static void dijkstra(int start) {
-        for (int i = 1; i <= V; i++) dist[i] = Integer.MAX_VALUE;
-        PriorityQueue<Info> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o.dist));
-        pq.add(new Info(start, 0));
-        dist[start] = 0;
-
-        while (!pq.isEmpty()) {
-            Info info = pq.poll();
-            if (dist[info.idx] < info.dist) continue;
-            for (Edge e : edges[info.idx]) {
-                if (dist[info.idx] + e.weight >= dist[e.to]) continue;
-                dist[e.to] = dist[info.idx] + e.weight;
-                pq.add(new Info(e.to, dist[e.to]));
-            }
-        }
-    }
-
     static void input() {
         V = scan.nextInt();
         E = scan.nextInt();
@@ -57,12 +40,30 @@ public class Main {
         }
     }
 
+    static void dijkstra(int start) {
+        for (int i = 1; i <= V; i++) dist[i] = Integer.MAX_VALUE;
+        PriorityQueue<Info> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o.dist));
+        pq.add(new Info(start, 0));
+        dist[start] = 0;
+
+        while (!pq.isEmpty()) {
+            Info info = pq.poll();
+            if (dist[info.idx] != info.dist) continue;
+            for (Edge e : edges[info.idx]) {
+                if (dist[info.idx] + e.weight >= dist[e.to]) continue;
+                dist[e.to] = dist[info.idx] + e.weight;
+                pq.add(new Info(e.to, dist[e.to]));
+            }
+        }
+    }
+
     static void pro() {
         dijkstra(K);
         for (int i = 1; i <= V; i++) {
-            if (dist[i] == Integer.MAX_VALUE) System.out.println("INF");
-            else System.out.println(dist[i]);
+            if (dist[i] == Integer.MAX_VALUE) sb.append("INF\n");
+            else sb.append(dist[i]).append('\n');
         }
+        System.out.println(sb);
     }
 
     public static void main(String[] args) {
