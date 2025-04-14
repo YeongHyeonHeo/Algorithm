@@ -28,31 +28,28 @@ public class Main {
         }
     }
 
-    static int ans;
-
-    static void DFS(int x, int prev, int goal, int dist) {
+    static void DFS(int x, int par, int goal, int dist) {
         if (x == goal) {
-            ans = dist;
+            System.out.println(dist);
             return;
         }
         for (Edge e : adj[x]) {
-            if (e.y == prev) continue;
+            if (e.y == par) continue;
             DFS(e.y, x, goal, dist + e.c);
         }
     }
 
     static void pro() {
-        int x = scan.nextInt(), y = scan.nextInt();
-        DFS(x, -1, y, 0);
-        System.out.println(ans);
+        while (M > 0) {
+            M--;
+            int x = scan.nextInt(), y = scan.nextInt();
+            DFS(x, 0, y, 0);
+        }
     }
 
     public static void main(String[] args) {
         input();
-        while (M > 0) {
-            M--;
-            pro();
-        }
+        pro();
     }
 
     static class FastReader {
