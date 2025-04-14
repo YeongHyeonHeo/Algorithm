@@ -48,7 +48,7 @@ public class Main {
         for (int i = 1; i <= N; i++) dist[i] = Integer.MAX_VALUE;
 
         // 최소 힙 생성
-        PriorityQueue<Info> pq = new PriorityQueue<>(Comparator.comparing(o -> o.dist));
+        PriorityQueue<Info> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o.dist));
 
         // 시작점에 대한 정보(Information)을 기록에 추가하고, 거리 배열(dist)에 갱신
         pq.add(new Info(start, 0));
