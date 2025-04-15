@@ -24,7 +24,7 @@ public class Main {
     }
 
     static void dfs(int x, int par) {
-        size[x]++;
+        size[x] = 1;
         for (int y : adj[x]) {
             if (y == par) continue;
             dfs(y, x);
@@ -36,8 +36,9 @@ public class Main {
         dfs(R, 0);
         while (Q-- > 0) {
             int q = scan.nextInt();
-            System.out.println(size[q]);
+            sb.append(size[q]).append('\n');
         }
+        System.out.println(sb);
     }
 
     public static void main(String[] args) {
