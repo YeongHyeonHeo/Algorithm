@@ -6,10 +6,10 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static class Info {
-        int x, k;
-        Info(int x, int k) {
-            this.x = x;
-            this.k = k;
+        int to, cnt;
+        Info(int to, int cnt) {
+            this.to = to;
+            this.cnt = cnt;
         }
     }
 
@@ -21,9 +21,9 @@ public class Main {
     static void input() {
         N = scan.nextInt();
         M = scan.nextInt();
-        adj = new ArrayList[N + 1];
         indeg = new int[N + 1];
         cnt = new int[N + 1][N + 1];
+        adj = new ArrayList[N + 1];
         for (int i = 1; i <= N; i++) adj[i] = new ArrayList<>();
         for (int i = 1; i <= M; i++) {
             int x = scan.nextInt(), y = scan.nextInt(), k = scan.nextInt();
@@ -44,16 +44,18 @@ public class Main {
         while (!que.isEmpty()) {
             int x = que.poll();
             for (Info info : adj[x]) {
-                int y = info.x, k = info.k;
-                indeg[y]--;
-                if (indeg[y] == 0) que.add(y);
+                int to = info.to, cnt_i = info.cnt;
+                indeg[to]--;
+                if (indeg[to] == 0) que.add(to);
                 for (int i = 1; i <= N; i++) {
-                    cnt[y][i] += cnt[x][i] * k;
+                    cnt[to][i] += cnt[x][i] * cnt_i;
                 }
             }
         }
-        for (int i = 1; i <= N; i++)
-            if (cnt[N][i] != 0) System.out.println(i + " " + cnt[N][i]);
+        for (int i = 1; i <= N; i++) {
+            if (cnt[N][i] != 0) sb.append(i).append(' ').append(cnt[N][i]).append('\n');
+        }
+        System.out.println(sb);
     }
 
     public static void main(String[] args) {
