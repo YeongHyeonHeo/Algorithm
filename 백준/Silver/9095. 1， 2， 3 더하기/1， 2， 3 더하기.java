@@ -5,33 +5,27 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int[] Dy;
+    static int cnt;
 
-    static void preprocess() {
-        Dy = new int[11];
-        // 초기값 구하기
-        Dy[1] = 1;
-        Dy[2] = 2;
-        Dy[3] = 4;
-
-        // 점화식을 토대로 Dy 배열 채우기
-        for (int i = 4; i <= 10; i++) {
-            Dy[i] = Dy[i-1] + Dy[i-2] + Dy[i-3];
+    static void rec_func(int k, int n) {
+        if (k >= n) {
+            if (k == n) {
+                cnt++;
+            }
+        } else {
+            for (int i = 1; i <= 3; i++) rec_func(k + i, n);
         }
-    }
-
-    static void pro() {
-        int T = scan.nextInt();
-        for (int tt = 1; tt <= T; tt++) {
-            int N = scan.nextInt();
-            sb.append(Dy[N]).append('\n');
-        }
-        System.out.println(sb);
     }
 
     public static void main(String[] args) {
-        preprocess();
-        pro();
+        int T = scan.nextInt();
+        while (T-- > 0) {
+            int n = scan.nextInt();
+            cnt = 0;
+            rec_func(0, n);
+            sb.append(cnt).append('\n');
+        }
+        System.out.println(sb);
     }
 
     static class FastReader {
