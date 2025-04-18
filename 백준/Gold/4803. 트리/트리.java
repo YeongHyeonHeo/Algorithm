@@ -12,8 +12,8 @@ public class Main {
     static void input() {
         n = scan.nextInt();
         m = scan.nextInt();
-        adj = new ArrayList[n + 1];
         visit = new boolean[n + 1];
+        adj = new ArrayList[n + 1];
         for (int i = 1; i <= n; i++) adj[i] = new ArrayList<>();
         for (int i = 1; i <= m; i++) {
             int x = scan.nextInt(), y = scan.nextInt();
@@ -32,7 +32,7 @@ public class Main {
         }
     }
 
-    static void pro(int t) {
+    static void pro(int T) {
         int ans = 0;
         for (int i = 1; i <= n; i++) {
             if (visit[i]) continue;
@@ -41,18 +41,18 @@ public class Main {
             dfs(i);
             if (edge_cnt == (vertex_cnt - 1) * 2) ans++;
         }
-        
-        sb.append("Case ").append(t).append(": ");
+
+        sb.append("Case ").append(T).append(": ");
         if (ans == 0) sb.append("No trees.\n");
         else if (ans == 1) sb.append("There is one tree.\n");
         else sb.append("A forest of ").append(ans).append(" trees.\n");
     }
 
     public static void main(String[] args) {
-        for (int t = 1; ; t++) {
+        for (int T = 1; ; T++) {
             input();
-            if (n == 0 & m == 0) break;
-            pro(t);
+            if (n == 0 && m == 0) break;
+            pro(T);
         }
         System.out.println(sb);
     }
