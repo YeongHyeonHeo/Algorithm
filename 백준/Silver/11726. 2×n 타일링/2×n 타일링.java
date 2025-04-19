@@ -5,24 +5,23 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
+    static int N;
     static int[] Dy;
 
-    static void preprocess() {
-        Dy = new int[1001];
-        Dy[1] = 1;
-        Dy[2] = 2;
-        for (int i = 3; i <= 1000; i++) {
-            Dy[i] = (Dy[i-1] + Dy[i-2]) % 10007;
-        }
+    static void input() {
+        N = scan.nextInt();
     }
 
     static void pro() {
-        int n = scan.nextInt();
-        System.out.println(Dy[n]);
+        Dy = new int[1005]; // 1001도 상관x
+        Dy[1] = 1;
+        Dy[2] = 2;
+        for (int i = 3; i <= N; i++) Dy[i] = (Dy[i-1] + Dy[i-2]) % 10007;
+        System.out.println(Dy[N]);
     }
 
     public static void main(String[] args) {
-        preprocess();
+        input();
         pro();
     }
 
