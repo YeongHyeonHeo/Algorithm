@@ -12,14 +12,14 @@ public class Main {
         N = scan.nextInt();
         P = new int[N + 1];
         for (int i = 1; i <= N; i++) P[i] = scan.nextInt();
+        Dy = new int[N + 1];
     }
 
     static void pro() {
-        Dy = new int[N + 1];
         Dy[0] = 0;
         for (int i = 1; i <= N; i++) {
-            for (int j = 0; j < i; j++) {
-                Dy[i] = Math.max(Dy[i], Dy[j] + P[i-j]);
+            for (int j = 1; j <= i; j++) {
+                Dy[i] = Math.max(Dy[i], Dy[i-j] + P[j]);
             }
         }
         System.out.println(Dy[N]);
