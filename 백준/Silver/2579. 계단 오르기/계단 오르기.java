@@ -27,7 +27,7 @@ public class Main {
         }
 
         // 점화식을 토대로 Dy 배열 채우기
-        for (int i = 2; i <= N; i++) {
+        for (int i = 3; i <= N; i++) {
             Dy[i][0] = Math.max(Dy[i - 2][0] + A[i], Dy[i - 2][1] + A[i]);
             Dy[i][1] = Dy[i - 1][0] + A[i];
         }
