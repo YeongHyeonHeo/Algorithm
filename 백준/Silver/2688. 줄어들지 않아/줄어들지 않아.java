@@ -16,7 +16,7 @@ public class Main {
     static void pro() {
         for (int i = 0; i <= 9; i++) Dy[1][i] = 1;
 
-        for (int i = 1; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             for (int j = 0; j <= 9; j++) {
                 for (int k = 0; k <= j; k++)
                     Dy[i][j] += Dy[i-1][k];
