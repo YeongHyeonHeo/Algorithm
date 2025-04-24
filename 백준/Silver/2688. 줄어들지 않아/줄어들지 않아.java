@@ -10,25 +10,29 @@ public class Main {
 
     static void input() {
         n = scan.nextInt();
-        Dy = new long[n + 1][10];
     }
 
-    static void pro() {
+    static void preprocess() {
+        Dy = new long[65][10];
+
         for (int i = 0; i <= 9; i++) Dy[1][i] = 1;
 
-        for (int i = 2; i <= n; i++) {
+        for (int i = 2; i <= 64; i++) {
             for (int j = 0; j <= 9; j++) {
                 for (int k = 0; k <= j; k++)
                     Dy[i][j] += Dy[i-1][k];
             }
         }
+    }
 
+    static void pro() {
         long ans = 0;
         for (int i = 0; i <= 9; i++) ans += Dy[n][i];
         System.out.println(ans);
     }
 
     public static void main(String[] args) {
+        preprocess();
         int T = scan.nextInt();
         while (T-- > 0) {
             input();
