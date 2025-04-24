@@ -34,9 +34,8 @@ public class Main {
         int ans = 0;
         for (int num = 0; num <= 9; num++) {
             ans += Dy[N][num];
-            ans %= 10007; // 주의
         }
-        System.out.println(ans);
+        System.out.println(ans % 10007);
     }
 
     public static void main(String[] args) {
