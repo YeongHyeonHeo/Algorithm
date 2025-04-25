@@ -7,37 +7,40 @@ public class Main {
 
     static int N, S, M;
     static int[] A;
-    static int[][] Dy;
+    static boolean[][] Dy;
 
     static void input() {
         N = scan.nextInt();
         S = scan.nextInt();
         M = scan.nextInt();
         A = new int[N + 1];
-        Dy = new int[N + 1][M + 1];
+        Dy = new boolean[N + 1][M + 1];
         for (int i = 1; i <= N; i++) A[i] = scan.nextInt();
     }
 
     static void pro() {
-        if (S - A[1] >= 0) Dy[1][S - A[1]] = 1;
-        if (S + A[1] <= M) Dy[1][S + A[1]] = 1;
+        Dy[0][S] = true;
 
-        for (int i = 2; i <= N; i++) {
+        int ans = 0;
+        for (int i = 1; i <= N; i++) {
+            boolean flag = false;
+            ans = 0;
             for (int j = 0; j <= M; j++) {
+                if (!Dy[i-1][j]) continue;
                 for (int cur : new int[]{j - A[i], j + A[i]}) {
                     if (cur < 0 || cur > M) continue;
-                    Dy[i][cur] += Dy[i - 1][j];
+                    Dy[i][cur] = true;
+                    flag = true;
+                    ans = Math.max(ans, cur);
                 }
             }
-        }
-
-        for (int i = M; i >= 0; i--) {
-            if (Dy[N][i] != 0) {
-                System.out.println(i);
+            if (!flag) {
+                System.out.println(-1);
                 return;
             }
         }
-        System.out.println(-1);
+
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {
