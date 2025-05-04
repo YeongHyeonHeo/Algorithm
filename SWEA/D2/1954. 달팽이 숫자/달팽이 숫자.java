@@ -7,6 +7,7 @@ public class Solution {
 
     static int N;
     static int[][] A;
+    static int[][] dir = {{0,1}, {1,0}, {0,-1}, {-1,0}};
 
     static void input() {
         N = scan.nextInt();
@@ -14,22 +15,27 @@ public class Solution {
     }
 
     static void pro() {
-        if (N == 1) {
-            sb.append(1).append('\n');
-            return;
+        int x = 1, y = 1;
+        A[x][y] = 1;
+        int idx = 0;
+
+        for (int i = 2; i <= N*N; i++) {
+            int nx = x + dir[idx][0];
+            int ny = y + dir[idx][1];
+
+            if (nx < 1 || ny < 1 || nx > N || ny > N || A[nx][ny] != 0) {
+                idx = (idx + 1) % 4;
+                i--;
+                continue;
+            }
+
+            A[nx][ny] = i;
+            x = nx;
+            y = ny;
         }
 
-        int j = 1;
-        while (A[j][j] == 0) {
-            for (int i = j; i <= N-j+1; i++) A[j][i] = A[j][i-1] + 1;
-            for (int i = j+1; i <= N-j+1; i++) A[i][N-j+1] = A[i-1][N-j+1] + 1;
-            for (int i = N-j; i >= j; i--) A[N-j+1][i] = A[N-j+1][i+1] + 1;
-            for (int i = N-j; i > j; i--) A[i][j] = A[i+1][j] + 1;
-            j++;
-        }
-
-        for (int l = 1; l <= N; l++) {
-            for (int m = 1; m <= N; m++) sb.append(A[l][m]).append(' ');
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) sb.append(A[i][j]).append(' ');
             sb.append('\n');
         }
     }
