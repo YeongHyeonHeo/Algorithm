@@ -12,28 +12,7 @@ public class Solution {
     }
 
     static void pro() {
-        String binary = "";
-        for (int i = 0; i < str.length(); i++) {
-            if ('A' <= str.charAt(i) && str.charAt(i) <= 'Z') {
-                int num =  str.charAt(i) - 'A';
-                binary += String.format("%06d", Integer.parseInt(Integer.toBinaryString(num)));
-            } else if ('a' <= str.charAt(i) && str.charAt(i) <= 'z') {
-                int num =  str.charAt(i) - 'a' + 26;
-                binary += String.format("%06d", Integer.parseInt(Integer.toBinaryString(num)));
-            } else if ('0' <= str.charAt(i) && str.charAt(i) <= '9') {
-                int num =  str.charAt(i) - '0' + 52;
-                binary += String.format("%06d", Integer.parseInt(Integer.toBinaryString(num)));
-            } else if (str.charAt(i) == '+') binary += String.format("%06d", Integer.parseInt(Integer.toBinaryString(62)));
-            else binary += String.format("%06d", Integer.parseInt(Integer.toBinaryString(63)));
-        }
-
-        String ans = "";
-        for (int i = 0; i <= binary.length()-8; i+=8) {
-            String decode = "";
-            for (int j = 0; j < 8; j++) decode += binary.charAt(i+j);
-            char ch = (char)Integer.parseInt(decode, 2);
-            ans += String.valueOf(ch);
-        }
+        String ans = new String(Base64.getDecoder().decode(str));
         sb.append(ans).append('\n');
     }
 
