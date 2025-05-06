@@ -8,6 +8,7 @@ public class Solution {
     static int change, max;
     static String str;
     static int[] A;
+    static boolean[][] visited;
 
     static void input() {
         str = scan.next();
@@ -15,13 +16,18 @@ public class Solution {
         A = new int[str.length()];
         for (int i = 0; i < A.length; i++) A[i] = str.charAt(i) - '0';
         max = 0;
+        visited = new boolean[11][1000000];
+    }
+
+    static int toInt(int[] A) {
+        String num = "";
+        for (int i = 0; i < A.length; i++) num += Integer.toString(A[i]);
+        return Integer.parseInt(num);
     }
 
     static void dfs(int N) {
         if (N == change) {
-            String num = "";
-            for (int i = 0; i < A.length; i++) num += Integer.toString(A[i]);
-            max = Math.max(max, Integer.parseInt(num));
+            max = Math.max(max, toInt(A));
             return;
         }
 
@@ -30,7 +36,11 @@ public class Solution {
                 int temp = A[i];
                 A[i] = A[j];
                 A[j] = temp;
-                dfs(N + 1);
+
+                if (!visited[N][toInt(A)]) dfs(N + 1);
+                visited[N][toInt(A)] = true;
+
+                // 원상복구
                 temp = A[i];
                 A[i] = A[j];
                 A[j] = temp;
