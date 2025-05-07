@@ -10,17 +10,22 @@ public class Solution {
 
     static void input() {
         N = scan.nextInt();
-        A = new String[N + 1];
-        for (int i = 1; i <= N; i++) A[i] = scan.nextLine();
+        A = new String[N];
+        for (int i = 0; i < N; i++) A[i] = scan.nextLine();
     }
 
     static void pro() {
+        int start = N/2, end = N/2;
         int sum = 0;
-        for (int i = 1; i <= N/2+1; i++) {
-            for (int j = N/2+2-i; j <= N/2+i; j++) sum += A[i].charAt(j-1)-'0';
-        }
-        for (int i = N/2+2; i <= N; i++) {
-            for (int j = i-N/2; j <= N+N/2+1-i; j++) sum += A[i].charAt(j-1)-'0';
+        for (int i = 0; i < N; i++) {
+            for (int j = start; j <= end; j++) sum += A[i].charAt(j) - '0';
+            if (i < N/2) {
+                start--;
+                end++;
+            } else {
+                start++;
+                end--;
+            }
         }
         sb.append(sum).append('\n');
     }
