@@ -20,17 +20,13 @@ public class Solution {
     static void pro() {
         int time = Math.abs(N - M) + 1;
         int ans = Integer.MIN_VALUE;
-        int start = 0, end = Math.min(N, M);
         for (int i = 0; i < time; i++) {
             int sum = 0;
-            if (A.length <= B.length) {
-                for (int j = start; j < end; j++) sum += A[j-i] * B[j];
-            } else {
-                for (int j = start; j < end; j++) sum += A[j] * B[j-i];
+            for (int j = 0; j < Math.min(N, M); j++) {
+                if (N < M) sum += A[j] * B[j + i];
+                else sum += A[j + i] * B[j];
             }
             ans = Math.max(ans, sum);
-            start++;
-            end++;
         }
         sb.append(ans).append('\n');
     }
