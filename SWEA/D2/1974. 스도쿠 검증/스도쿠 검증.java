@@ -6,58 +6,39 @@ public class Solution {
     static StringBuilder sb = new StringBuilder();
 
     static int[][] A;
-    static int[] num;
 
     static void input() {
         A = new int[10][10];
-        num = new int[10];
         for (int i = 1; i <= 9; i++) for (int j = 1; j <= 9; j++) A[i][j] = scan.nextInt();
     }
 
-    static boolean check(int[] num) {
-        for (int i = 1; i <= 9; i++) {
-            if (num[i] == 0) return false;
-        }
-        return true;
-    }
-
     static void pro() {
-        // 가로
+        // 가로, 세로
         for (int i = 1; i <= 9; i++) {
-            for (int j = 1; j <= 9; j++) num[j] = 0;
+            int sumRow = 0, sumCol = 0;
             for (int j = 1; j <= 9; j++) {
-                num[A[i][j]]++;
+                sumRow += A[i][j];
+                sumCol += A[j][i];
             }
-            if (!check(num)) {
-                sb.append(0).append('\n');
+            if (sumRow != 45 || sumCol != 45) {
+                sb.append('0').append('\n');
                 return;
             }
         }
-        // 세로
-        for (int i = 1; i <= 9; i++) {
-            for (int j = 1; j <= 9; j++) num[j] = 0;
-            for (int j = 1; j <= 9; j++) {
-                num[A[j][i]]++;
-            }
-            if (!check(num)) {
-                sb.append(0).append('\n');
-                return;
-            }
-        }
+
         // 3 x 3
         for (int i = 1; i <= 7; i+=3) {
             for (int j = 1; j <= 7; j+=3) {
-                for (int k = 1; k <= 9; k++) num[k] = 0;
+                int sum = 0;
                 for (int row = i; row <= i+2; row++) {
-                    for (int col = j; col <= j+2; col++) num[A[row][col]]++;
+                    for (int col = j; col <= j+2; col++) sum += A[row][col];
                 }
-                if (!check(num)) {
-                    sb.append(0).append('\n');
+                if (sum != 45) {
+                    sb.append('0').append('\n');
                     return;
                 }
             }
         }
-
         sb.append(1).append('\n');
     }
 
