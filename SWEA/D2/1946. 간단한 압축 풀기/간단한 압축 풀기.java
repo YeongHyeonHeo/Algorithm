@@ -5,29 +5,34 @@ public class Solution {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, sum;
+    static int N;
     static String[] str;
+    static int[] num;
 
     static void input() {
         N = scan.nextInt();
-        str = new String[200];
-        sum = 0;
+        str = new String[N];
+        num = new int[N];
         for (int i = 0; i < N; i++) {
-            String word = scan.next();
-            int num = scan.nextInt();
-            for (int j = sum; j < (sum+num); j++) str[j] = word;
-            sum+=num;
+            str[i] = scan.next();
+            num[i] = scan.nextInt();
         }
     }
 
     static void pro() {
-        for (int i = 0; i <= sum/10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (str[i*10+j] == null) break;
-                sb.append(str[i*10+j]);
+        int cnt = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < num[i]; j++) {
+                cnt++;
+                sb.append(str[i]);
+                if (cnt == 10) {
+                    if (i == N-1 && j == num[i]-1) continue;
+                    sb.append('\n');
+                    cnt = 0;
+                }
             }
-            sb.append('\n');
         }
+        sb.append('\n');
     }
 
     public static void main(String[] args) {
