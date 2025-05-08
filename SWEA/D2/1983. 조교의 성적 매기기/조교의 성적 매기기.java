@@ -6,35 +6,26 @@ public class Solution {
     static StringBuilder sb = new StringBuilder();
 
     static int N, K;
-    static int[][] scoreSum;
-    static String[] score = {"A+", "A0", "A-", "B+", "B0", "B-", "C+", "C0", "C-", "D0"};
+    static double[] scoreSum;
+    static String[] score = {"D0", "C-", "C0", "C+", "B-", "B0", "B+", "A-", "A0", "A+"};
 
     static void input() {
         N = scan.nextInt();
         K = scan.nextInt();
-        scoreSum = new int[N + 1][2];
-        for (int i = 1; i <= N; i++) {
-            int sum = 0;
-            sum += (scan.nextInt()) * 35/100;
-            sum += (scan.nextInt()) * 45/100;
-            sum += (scan.nextInt()) * 20/100;
-            scoreSum[i][0] = sum;
-            scoreSum[i][1] = i;
+        scoreSum = new double[N];
+        for (int i = 0; i < N; i++) {
+            int mid = scan.nextInt();
+            int fin = scan.nextInt();
+            int work = scan.nextInt();
+            scoreSum[i] = (mid*0.35) + (fin*0.45) + (work*0.2);
         }
     }
 
     static void pro() {
-        Arrays.sort(scoreSum, 1, N + 1, Comparator.comparingInt((int[] o) -> o[0]).reversed());
-
-        int idx = N/10;
-        int cnt = -1;
-        for (int i = 1; i <= N; i+=idx) {
-            cnt++;
-            for (int j = 0; j < idx; j++) scoreSum[i+j][0] = cnt;
-        }
-
-        for (int i = 1; i <= N; i++) {
-            if (scoreSum[i][1] == K) sb.append(score[scoreSum[i][0]]).append('\n');
+        double goal = scoreSum[K-1];
+        Arrays.sort(scoreSum);
+        for (int i = 0; i < N; i++) {
+            if (scoreSum[i] == goal) sb.append(score[i/(N/10)]).append('\n');
         }
     }
 
