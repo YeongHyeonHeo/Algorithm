@@ -22,7 +22,7 @@ public class Solution {
             boolean s = false;
             for (int j = 0; j < N; j++) {
                 if (A[j][i] == 1) s = true;
-                if (s && A[j][i] == 2) {
+                else if (s && A[j][i] == 2) {
                     cnt++;
                     s = false;
                 }
