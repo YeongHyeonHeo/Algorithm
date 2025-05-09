@@ -48,7 +48,7 @@ public class Solution {
         return false;
     }
 
-    static void pro(int T) {
+    static void pro() {
         boolean flag = false;
         for (int len = 100; len >= 2; len--) {
             for (int i = 0; i < 100; i++) {
@@ -59,8 +59,7 @@ public class Solution {
             }
             if (flag) break;
         }
-        if (T == 10) sb.append(max);
-        else sb.append(max).append('\n');
+        sb.append(max).append('\n');
     }
 
     public static void main(String[] args) {
@@ -68,7 +67,7 @@ public class Solution {
             int T = scan.nextInt();
             sb.append('#').append(T).append(' ');
             input();
-            pro(T);
+            pro();
         }
         System.out.print(sb);
     }
