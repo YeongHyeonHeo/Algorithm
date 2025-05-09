@@ -17,10 +17,8 @@ public class Solution {
     static void pro() {
         int cnt = 0;
         if (A[0] == '1') cnt++;
-        for (int i = 1; i < str.length(); i++) {
-            if (A[i-1] != A[i] && A[i] == '0') cnt++;
-            else if (A[i-1] != A[i] && A[i] == '1') cnt++;
-        }
+        for (int i = 1; i < str.length(); i++)
+            if (A[i-1] != A[i]) cnt++;
         sb.append(cnt).append('\n');
     }
 
