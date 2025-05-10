@@ -15,14 +15,8 @@ public class Solution {
     static void pro() {
         int ans = 0;
         for (int i = 0; i <= str.length()-find.length(); i++) {
-            boolean isValid = true;
-            for (int j = 0; j < find.length(); j++) {
-                if (find.charAt(j) != str.charAt(i+j)) {
-                    isValid = false;
-                    break;
-                }
-            }
-            if (isValid) ans++;
+            String sub = str.substring(i, i+find.length());
+            if (find.equals(sub)) ans++;
         }
         sb.append(ans).append('\n');
     }
