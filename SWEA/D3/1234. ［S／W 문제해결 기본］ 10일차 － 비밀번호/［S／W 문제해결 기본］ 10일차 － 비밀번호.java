@@ -17,14 +17,12 @@ public class Solution {
     }
 
     static void pro() {
-        int end = A.size();
         while (true) {
             boolean flag = false;
-            for (int i = 0; i < end-1; i++) {
+            for (int i = 0; i < A.size()-1; i++) {
                 if (A.get(i) == A.get(i+1)) {
                     A.remove(i);
                     A.remove(i);
-                    end -= 2;
                     flag = true;
                 }
             }
