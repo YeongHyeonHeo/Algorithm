@@ -14,9 +14,8 @@ public class Solution {
                     break;
                 }
             }
-            if (flag) sb.append(i).append(' ');
+            if (flag) System.out.print(i + " ");
         }
-        System.out.print(sb);
     }
 
     static class FastReader {
