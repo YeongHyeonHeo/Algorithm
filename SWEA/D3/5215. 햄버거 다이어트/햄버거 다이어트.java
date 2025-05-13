@@ -5,43 +5,32 @@ public class Solution {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, L, max;
-    static int[] T, K, selected;
+    static int N, L;
+    static int[] T, K;
+    static int[][] dp;
 
     static void input() {
         N = scan.nextInt();
         L = scan.nextInt();
         T = new int[N + 1];
         K = new int[N + 1];
-        selected = new int[N + 1];
+        dp = new int[N + 1][L + 1];
         for (int i = 1; i <= N; i++) {
             T[i] = scan.nextInt();
             K[i] = scan.nextInt();
-        }
-        max = Integer.MIN_VALUE;
-    }
-
-    static void rec_func(int k, int M) {
-        if (k == M + 1) {
-            int sumK = 0, sumT = 0;
-            for (int i = 1; i <= M; i++) sumK += K[selected[i]];
-            if (sumK <= L) {
-                for (int i = 1; i <= M; i++) sumT += T[selected[i]];
-                max = Math.max(max, sumT);
-            }
-        } else {
-            for (int cand = selected[k-1] + 1; cand <= N; cand++) {
-                selected[k] = cand;
-                rec_func(k+1, M);
-            }
         }
     }
 
     static void pro() {
         for (int i = 1; i <= N; i++) {
-            rec_func(1, i);
+            for (int j = 1; j <= L; j++) {
+                if (K[i] > j) dp[i][j] = dp[i-1][j];
+                else {
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-K[i]] + T[i]);
+                }
+            }
         }
-        sb.append(max).append('\n');
+        sb.append(dp[N][L]).append('\n');
     }
 
     public static void main(String[] args) {
