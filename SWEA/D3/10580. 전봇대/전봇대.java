@@ -21,7 +21,7 @@ public class Solution {
             for (int i = 0; i < A.size(); i+=2) {
                 int a = A.get(i);
                 int b = A.get(i+1);
-                if (start < a && end > b || start > a && end < b) cnt++;
+                if ((start < a && end > b) || (start > a && end < b)) cnt++;
             }
             A.add(start);
             A.add(end);
