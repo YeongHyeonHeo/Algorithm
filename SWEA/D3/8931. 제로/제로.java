@@ -6,22 +6,22 @@ public class Solution {
     static StringBuilder sb = new StringBuilder();
 
     static int K;
-    static ArrayList<Integer> A;
+    static Stack<Integer> A;
 
     static void input() {
         K = scan.nextInt();
-        A = new ArrayList<>();
+        A = new Stack<>();
     }
 
     static void pro() {
         while (K-- > 0) {
             int money = scan.nextInt();
-            if (money != 0) A.add(money);
-            else A.remove(A.size()-1);
+            if (money != 0) A.push(money);
+            else A.pop();
         }
 
         int sum = 0;
-        for (int i : A) sum += i;
+        while (!A.isEmpty()) sum += A.pop();
         sb.append(sum).append('\n');
     }
 
