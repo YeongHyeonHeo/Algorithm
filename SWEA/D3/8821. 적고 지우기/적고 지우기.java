@@ -6,30 +6,23 @@ public class Solution {
     static StringBuilder sb = new StringBuilder();
 
     static String str;
-    static int[] A;
-    static ArrayList<Integer> num;
+    static int[] num;
 
     static void input() {
         str = scan.nextLine();
-        A = new int[str.length()];
-        for (int i = 0; i < A.length; i++) A[i] = str.charAt(i) - '0';
-        num = new ArrayList<>();
+        num = new int[10];
     }
 
     static void pro() {
-        for (int i = 0 ; i < A.length; i++) {
-            boolean flag = true;
-            for (int n : num) {
-                if (A[i] == n) {
-                    flag = false;
-                    // 숫자 지우기
-                    num.remove(num.indexOf(n));
-                    break;
-                }
-            }
-            if (flag) num.add(A[i]);
+        for (int i = 0; i < str.length(); i++) {
+            int n = str.charAt(i) - '0';
+            num[n] = num[n] == 1 ? 0 : 1;
         }
-        sb.append(num.size()).append('\n');
+        int cnt = 0;
+        for (int i : num) {
+            if (i == 1) cnt++;
+        }
+        sb.append(cnt).append('\n');
     }
 
     public static void main(String[] args) {
@@ -63,6 +56,10 @@ public class Solution {
 
         int nextInt() {
             return Integer.parseInt(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
         }
 
         String nextLine() {
