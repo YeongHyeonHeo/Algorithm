@@ -19,9 +19,7 @@ public class Solution {
             num[n] = num[n] == 1 ? 0 : 1;
         }
         int cnt = 0;
-        for (int i : num) {
-            if (i == 1) cnt++;
-        }
+        for (int i : num) cnt += i;
         sb.append(cnt).append('\n');
     }
 
