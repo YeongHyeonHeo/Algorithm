@@ -29,16 +29,13 @@ public class Solution {
         for (int y : adj[x]) {
             if (visited[y]) continue;
             dfs(y, cnt+1);
-            visited[y] = false;
         }
+        visited[x] = false;
         ans = Math.max(ans, cnt);
     }
 
     static void pro() {
-        for (int i = 1; i <= N; i++) {
-            dfs(i, 1);
-            visited[i] = false;
-        }
+        for (int i = 1; i <= N; i++) dfs(i, 1);
         sb.append(ans).append('\n');
     }
 
