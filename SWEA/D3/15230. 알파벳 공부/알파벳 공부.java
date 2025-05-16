@@ -6,8 +6,7 @@ public class Solution {
     static StringBuilder sb = new StringBuilder();
 
     static String str;
-    static char[] alp = {'a','b','c','d','e','f','g','h','i','j','k','l',
-            'm','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    static String alp = "abcdefghijklmnopqrstuvwxyz";
 
 
     static void input() {
@@ -17,7 +16,7 @@ public class Solution {
     static void pro() {
         int cnt = 0;
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == alp[i]) cnt++;
+            if (str.charAt(i) == alp.charAt(i)) cnt++;
             else break;
         }
         sb.append(cnt).append('\n');
