@@ -1,0 +1,69 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    static FastReader scan = new FastReader();
+    static StringBuilder sb = new StringBuilder();
+
+    static String str;
+    static char[] alp = {'a','b','c','d','e','f','g','h','i','j','k','l',
+            'm','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+
+
+    static void input() {
+        str = scan.nextLine();
+    }
+
+    static void pro() {
+        int cnt = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == alp[i]) cnt++;
+            else break;
+        }
+        sb.append(cnt).append('\n');
+    }
+
+    public static void main(String[] args) {
+        int T = scan.nextInt();
+        for (int t = 1; t <= T; t++) {
+            sb.append('#').append(t).append(' ');
+            input();
+            pro();
+        }
+        System.out.print(sb);
+    }
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+}
