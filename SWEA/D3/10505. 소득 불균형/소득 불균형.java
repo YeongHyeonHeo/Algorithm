@@ -17,7 +17,7 @@ public class Solution {
             A[i] = scan.nextInt();
             sum += A[i];
         }
-        avg = (float) sum/N;
+        avg = (float)sum/N;
     }
 
     static void pro() {
