@@ -6,34 +6,24 @@ public class Solution {
     static StringBuilder sb = new StringBuilder();
 
     static String str;
-    static char[] ch;
+    static int[] alp;
 
     static void input() {
         str = scan.nextLine();
-        ch = new char[str.length()];
-        for (int i = 0; i < str.length(); i++) ch[i] = str.charAt(i);
+        alp = new int[26];
+        for (int i = 0; i < str.length(); i++) alp[str.charAt(i)-'a']++;
     }
 
     static void pro() {
-        for (int i = 0; i < ch.length-1; i++) {
-            for (int j = i+1; j < ch.length; j++) {
-                if (ch[i] != '-' && ch[i] == ch[j]) {
-                    ch[i] = '-';
-                    ch[j] = '-';
-                    break;
-                }
+        int cnt = 0;
+        for (int i = 0; i < 26; i++) {
+            if (alp[i] != 0 && alp[i] % 2 == 1) {
+                sb.append((char)(i+'a'));
+                cnt++;
             }
         }
-        Arrays.sort(ch);
-        boolean flag = true;
-        for (char c : ch) {
-            if (c != '-') {
-                sb.append(c);
-                flag = false;
-            }
-        }
-        if (flag) sb.append("Good\n");
-        else sb.append('\n');
+        if (cnt > 0) sb.append("\n");
+        else sb.append("Good\n");
     }
 
     public static void main(String[] args) {
