@@ -6,24 +6,16 @@ public class Solution {
     static StringBuilder sb = new StringBuilder();
 
     static String str;
-    static int[] alp;
+    static HashSet<Character> set;
 
     static void input() {
         str = scan.nextLine();
-        alp = new int[26];
+        set = new HashSet<>();
     }
 
     static void pro() {
-        for (int i = 0; i < 4; i++) alp[str.charAt(i) - 'A']++;
-        boolean flag = true;
-        for (int i = 0; i < 26; i++) {
-            if (alp[i] != 2 && alp[i] != 0) {
-                flag = false;
-                break;
-            }
-        }
-        if (flag) sb.append("Yes\n");
-        else sb.append("No\n");
+        for (int i = 0; i < 4; i++) set.add(str.charAt(i));
+        sb.append(set.size() == 2 ? "Yes\n" : "No\n");
     }
 
     public static void main(String[] args) {
