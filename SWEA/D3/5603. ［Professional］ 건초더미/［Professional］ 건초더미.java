@@ -21,8 +21,10 @@ public class Solution {
 
     static void pro() {
         int ans = 0;
-        for (int i = 0; i < N; i++) ans += Math.abs(avg - A[i]);
-        sb.append(ans/2).append('\n');
+        for (int i = 0; i < N; i++) {
+            if (avg < A[i]) ans += A[i] - avg;
+        }
+        sb.append(ans).append('\n');
     }
 
     public static void main(String[] args) {
