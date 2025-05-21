@@ -18,14 +18,7 @@ public class Solution {
             sb.append("No\n");
             return;
         }
-        boolean flag = true;
-        for (int i = 0; i < N/2; i++) {
-            if (str.charAt(i) != str.charAt(i+N/2)) {
-                flag = false;
-                break;
-            }
-        }
-        if (flag) sb.append("Yes\n");
+        if (str.substring(0, N/2).equals(str.substring(N/2, N))) sb.append("Yes\n");
         else sb.append("No\n");
     }
 
