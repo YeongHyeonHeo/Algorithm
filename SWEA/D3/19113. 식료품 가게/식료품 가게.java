@@ -15,16 +15,15 @@ public class Solution {
     }
 
     static void pro() {
-        boolean[] b = new boolean[2*N];
+        boolean[] used = new boolean[2*N];
         for (int i = 0; i < 2*N; i++) {
-            if (b[i]) continue;
+            if (used[i]) continue;
             long original = A[i] * 4/3;
             for (int j = i+1; j < 2*N; j++) {
-                if (b[j]) continue;
+                if (used[j]) continue;
                 if (original == A[j]) {
                     sb.append(A[i]).append(' ');
-                    b[j] = true;
-                    b[i] = true;
+                    used[j] = true;
                     break;
                 }
             }
