@@ -26,16 +26,12 @@ public class Solution {
                 for (int i = 1; i < num.length; i++) s += Integer.toString(num[i]);
                 min = Math.min(min, Integer.parseInt(s));
                 max = Math.max(max, Integer.parseInt(s));
-                // 원상복구
-                temp = num[selected[1]];
-                num[selected[1]] = num[selected[2]];
-                num[selected[2]] = temp;
-            } else {
-                // 원상복구
-                temp = num[selected[1]];
-                num[selected[1]] = num[selected[2]];
-                num[selected[2]] = temp;
+
             }
+            // 원상복구
+            temp = num[selected[1]];
+            num[selected[1]] = num[selected[2]];
+            num[selected[2]] = temp;
         } else {
             for (int cand = selected[k-1] + 1; cand < num.length; cand++) {
                 selected[k] = cand;
