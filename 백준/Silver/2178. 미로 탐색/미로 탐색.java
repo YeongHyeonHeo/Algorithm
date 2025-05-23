@@ -21,10 +21,6 @@ public class Main {
     }
 
     static void bfs(int x, int y) {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) dist[i][j] = -1;
-        }
-
         Queue<Integer> que = new LinkedList<>();
         que.add(x);
         que.add(y);
