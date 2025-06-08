@@ -13,11 +13,7 @@ public class Main {
 
     static void pro() {
         for (int i = 3; i <= n - 6; i += 3) {
-            for (int j = 3; j <= n - 3 - i; j += 3) {
-                for (int k = 3; k <= n - i - j; k += 3) {
-                    if (i + j + k == n) cnt++;
-                }
-            }
+            for (int j = 3; j <= n - 3 - i; j += 3) cnt++;
         }
         sb.append(cnt);
         System.out.print(sb);
