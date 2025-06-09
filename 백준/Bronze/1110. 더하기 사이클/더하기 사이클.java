@@ -12,20 +12,14 @@ public class Main {
     }
 
     static void pro() {
-        String num = Integer.toString(N);
-        if (N < 10) num = "0" + N;
-        String num2 = num;
+        int copy = N, cnt = 0;
 
-        int cnt = 0;
         while (true) {
             cnt++;
-            int sum = (num2.charAt(0) - '0') + (num2.charAt(1) - '0');
-            String sum2 = Integer.toString(sum);
-            if (sum < 10) sum2 = "0" + sum;
-            String newNum = Character.toString(num2.charAt(1)) + sum2.charAt(1);
-            if (num.equals(newNum)) break;
-            num2 = newNum;
+            N = N % 10 * 10 + (N / 10 + N % 10) % 10;
+            if (N == copy) break;
         }
+
         sb.append(cnt);
         System.out.println(sb);
     }
