@@ -13,15 +13,14 @@ public class Main {
     }
 
     static void pro() {
-        Arrays.sort(num);
-        int ans = num[0];
+        int ans = 0;
         while (true) {
+            ans++;
             int cnt = 0;
             for (int n : num) {
                 if (ans % n == 0) cnt++;
             }
             if (cnt >= 3) break;
-            ans++;
         }
         sb.append(ans);
         System.out.println(sb);
