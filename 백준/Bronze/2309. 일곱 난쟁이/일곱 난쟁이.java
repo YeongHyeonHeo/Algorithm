@@ -5,38 +5,39 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
+    static int[] height, selected;
+    static boolean flag;
+
     static void input() {
-        arr = new int[10];
-        for (int i = 1; i <= 9; i++) arr[i] = scan.nextInt();
+        height = new int[10];
+        for (int i = 1; i <= 9; i++) height[i] = scan.nextInt();
         selected = new int[8];
-        height = new int[8];
-        ans = new int[8];
     }
 
-    static int[] arr, selected, height, ans;
-    static int hap = 0;
-
-    static void rec_func(int k, int[] arr, int hap) {
+    static void rec_func(int k, int sum) {
+        if (flag) return;
         if (k == 8) {
-            if (hap == 100) {
-                for (int i = 1; i <= 7; i++) ans[i] = height[i];
+            if (sum == 100) {
+                for (int i = 1; i <= 7; i++) sb.append(height[selected[i]]).append('\n');
+                flag = true;
             }
         } else {
             for (int cand = selected[k-1] + 1; cand <= 9; cand++) {
                 selected[k] = cand;
-                height[k] = arr[cand];
-                rec_func(k + 1, arr, hap + height[k]);
-                selected[k] = 0;
+                rec_func(k + 1, sum + height[cand]);
             }
         }
     }
 
+    static void pro() {
+        Arrays.sort(height, 1, 10);
+        rec_func(1, 0);
+        System.out.print(sb);
+    }
+
     public static void main(String[] args) {
         input();
-        Arrays.sort(arr);
-        rec_func(1, arr, hap);
-        for (int i = 1; i <= 7; i++) sb.append(ans[i]).append('\n');
-        System.out.println(sb.toString());
+        pro();
     }
 
     static class FastReader {
@@ -60,14 +61,6 @@ public class Main {
 
         int nextInt() {
             return Integer.parseInt(next());
-        }
-
-        long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        double nextDouble() {
-            return Double.parseDouble(next());
         }
 
         String nextLine() {
