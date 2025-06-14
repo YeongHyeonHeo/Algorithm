@@ -18,11 +18,7 @@ public class Main {
     static void pro() {
         int x = (p + t) % (2 * w);
         int y = (q + t) % (2 * h);
-
-        if (x > w) x = 2 * w - x;
-        if (y > h) y = 2 * h - y;
-
-        sb.append(x).append(' ').append(y);
+        sb.append(w - Math.abs(w-x)).append(' ').append(h - Math.abs(h-y));
         System.out.print(sb);
     }
 
