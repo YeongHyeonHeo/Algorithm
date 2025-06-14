@@ -16,23 +16,13 @@ public class Main {
     }
 
     static void pro() {
-        int deltaX = 1;
-        int timeX = t % (2 * w);
-        while (timeX-- > 0) {
-            if (p == w) deltaX = -1;
-            else if (p == 0) deltaX = 1;
-            p += deltaX;
-        }
+        int x = (p + t) % (2 * w);
+        int y = (q + t) % (2 * h);
 
-        int deltaY = 1;
-        int timeY = t % (2 * h);
-        while (timeY-- > 0) {
-            if (q == h) deltaY = -1;
-            else if (q == 0) deltaY = 1;
-            q += deltaY;
-        }
+        if (x > w) x = 2 * w - x;
+        if (y > h) y = 2 * h - y;
 
-        sb.append(p).append(' ').append(q);
+        sb.append(x).append(' ').append(y);
         System.out.print(sb);
     }
 
