@@ -6,17 +6,18 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static int[] arr;
+    static int[] cnt;
 
     static void input() {
         N = scan.nextInt();
-        arr = new int[N];
-        for (int i = 0; i < N; i++) arr[i] = scan.nextInt();
+        cnt = new int[10001];
+        for (int i = 0; i < N; i++) cnt[scan.nextInt()]++;
     }
 
     static void pro() {
-        Arrays.sort(arr);
-        for (int i : arr) sb.append(i).append('\n');
+        for (int i = 0; i < 10001; i++) {
+            while (cnt[i]-- > 0) sb.append(i).append('\n');
+        }
         System.out.print(sb);
     }
 
