@@ -16,32 +16,26 @@ public class Main {
     }
 
     static void pro() {
-        int row = 0, col = 0;
-
+        boolean[] row = new boolean[N];
+        boolean[] col = new boolean[M];
         for (int i = 0; i < N; i++) {
-            boolean flagRow = true;
             for (int j = 0; j < M; j++) {
                 if (A[i].charAt(j) == 'X') {
-                    flagRow = false;
-                    break;
-                }
-
-            }
-            if (flagRow) row++;
-        }
-
-        for (int i = 0; i < M; i++) {
-            boolean flagCol = true;
-            for (int j = 0; j < N; j++) {
-                if (A[j].charAt(i) == 'X') {
-                    flagCol = false;
-                    break;
+                    row[i] = true;
+                    col[j] = true;
                 }
             }
-            if (flagCol) col++;
         }
 
-        sb.append(Math.max(row, col));
+        int needRow = N, needCol = M;
+        for (boolean b : row) {
+            if (b) needRow--;
+        }
+        for (boolean b : col) {
+            if (b) needCol--;
+        }
+
+        sb.append(Math.max(needRow, needCol));
         System.out.println(sb);
     }
 
