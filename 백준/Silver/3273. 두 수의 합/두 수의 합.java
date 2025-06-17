@@ -6,26 +6,30 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int n, x;
-    static int[] a;
+    static int[] num;
+    static boolean[] exist;
 
     static void input() {
         n = scan.nextInt();
-        a = new int[n + 1];
-        for (int i = 1; i <= n; i++) a[i] = scan.nextInt();
+        num = new int[n];
+        exist = new boolean[1000001];
+        for (int i = 0; i < n; i++) {
+            int a = scan.nextInt();
+            num[i] = a;
+            exist[a] = true;
+        }
         x = scan.nextInt();
     }
 
     static void pro() {
-        Arrays.sort(a, 1, n + 1);
-        int L = 1, R = n, ans = 0;
-        while (L < R) {
-            if (a[L] + a[R] == x) {
-                L++; R--;
-                ans++;
-            } else if (a[L] + a[R] > x) R--;
-            else L++;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            int pairValue = x - num[i];
+            if (1 <= pairValue && pairValue <= 1000000) {
+                ans += exist[pairValue] ? 1 : 0;
+            }
         }
-        System.out.println(ans);
+        System.out.println(ans/2);
     }
 
     public static void main(String[] args) {
@@ -54,14 +58,6 @@ public class Main {
 
         int nextInt() {
             return Integer.parseInt(next());
-        }
-
-        long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        double nextDouble() {
-            return Double.parseDouble(next());
         }
 
         String nextLine() {
