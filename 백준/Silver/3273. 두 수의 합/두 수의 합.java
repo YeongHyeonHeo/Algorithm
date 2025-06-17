@@ -25,11 +25,12 @@ public class Main {
         int ans = 0;
         for (int i = 0; i < n; i++) {
             int pairValue = x - num[i];
+            if (num[i] <= pairValue) continue;
             if (1 <= pairValue && pairValue <= 1000000) {
                 ans += exist[pairValue] ? 1 : 0;
             }
         }
-        System.out.println(ans/2);
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {
