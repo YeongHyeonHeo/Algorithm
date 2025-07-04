@@ -13,10 +13,14 @@ public class Main {
     }
 
     static void pro() {
-        int ans = 0;
+        long ans = 0;
         for (int i = 0; i < L; i++) {
-            double n = (str.charAt(i) - 'a' + 1) * Math.pow(31, i);
-            ans += (int)n % 1234567891;
+            long n = str.charAt(i) - 'a' + 1;
+            if (i >= 1) {
+                for (int j = 0; j < i; j++) n = n * 31 % 1234567891;
+            }
+            ans += n;
+            ans %= 1234567891;
         }
         System.out.println(ans);
     }
