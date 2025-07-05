@@ -12,25 +12,13 @@ public class Main {
         b = scan.nextInt();
     }
 
+    static int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
     static void pro() {
-        // 최대공약수
-        int min = Math.min(a, b);
-        for (int i = 1; i <= min; i++) {
-            if (min % i == 0) {
-                min /= i;
-                if (a % min == 0 && b % min == 0) break;
-            }
-            min = Math.min(a, b);
-        }
-
-        // 최소공배수
-        int max = Math.max(a, b);
-        while (true) {
-            if (max % a == 0 && max % b == 0) break;
-            max += Math.max(a, b);
-        }
-
-        sb.append(min).append('\n').append(max);
+        sb.append(gcd(a, b)).append('\n').append(a * b / gcd(a, b));
         System.out.println(sb);
     }
 
