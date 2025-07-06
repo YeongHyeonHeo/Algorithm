@@ -5,44 +5,26 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static class Person implements Comparable<Person> {
-        public int num, height, weight, ans;
-
-        public int compareTo(Person other) {
-            if (height != other.height) return other.height - height;
-            return other.weight - weight;
-        }
-    }
-
     static int N;
-    static Person[] p;
+    static int[] height, weight;
 
     static void input() {
         N = scan.nextInt();
-        p = new Person[N];
-        for (int i = 0; i < N; i++) {
-            p[i] = new Person();
-            p[i].num = i;
-            p[i].height = scan.nextInt();
-            p[i].weight = scan.nextInt();
+        height = new int[N];
+        weight = new int[N];
+        for (int i = 0 ; i < N; i++) {
+            height[i] = scan.nextInt();;
+            weight[i] = scan.nextInt();
         }
     }
 
     static void pro() {
-        Arrays.sort(p);
-        p[0].ans = 1;
-        for (int i = 1; i < N; i++) {
-            int cnt = 1;
-            for (int j = 0; j < i; j++) {
-                if (p[i].weight < p[j].weight && p[i].height != p[j].height) cnt++;
-            }
-            p[i].ans = cnt;
-        }
-
         for (int i = 0; i < N; i++) {
+            int ans = 1;
             for (int j = 0; j < N; j++) {
-                if (p[j].num == i) sb.append(p[j].ans).append(' ');
+                if (height[i] < height[j] && weight[i] < weight[j]) ans++;
             }
+            sb.append(ans).append(' ');
         }
         System.out.println(sb);
     }
