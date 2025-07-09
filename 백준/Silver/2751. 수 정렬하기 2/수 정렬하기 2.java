@@ -6,24 +6,17 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static int[] cnt;
+    static boolean[] cnt;
 
     static void input() {
         N = scan.nextInt();
-        cnt = new int[2000000 + 1];
-        for (int i = 0; i < N; i++) {
-            int n = scan.nextInt();
-            if (n >= 0) cnt[n] = 1;
-            else cnt[1000000 + Math.abs(n)] = 1;
-        }
+        cnt = new boolean[2000001];
+        for (int i = 0; i < N; i++) cnt[scan.nextInt() + 1000000] = true;
     }
 
     static void pro() {
-        for (int i = 2000000; i >= 1000001; i--) {
-            if (cnt[i] == 1) sb.append(-(i - 1000000)).append('\n');
-        }
-        for (int i = 0; i <= 1000000; i++) {
-            if (cnt[i] == 1) sb.append(i).append('\n');
+        for (int i = 0; i <= 2000000; i++) {
+            if (cnt[i]) sb.append(i - 1000000).append('\n');
         }
         System.out.print(sb);
     }
