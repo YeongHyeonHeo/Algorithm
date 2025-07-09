@@ -6,17 +6,25 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static int[] num;
+    static int[] cnt;
 
     static void input() {
         N = scan.nextInt();
-        num = new int[N];
-        for (int i = 0; i < N; i++) num[i] = scan.nextInt();
+        cnt = new int[2000000 + 1];
+        for (int i = 0; i < N; i++) {
+            int n = scan.nextInt();
+            if (n >= 0) cnt[n] = 1;
+            else cnt[1000000 + Math.abs(n)] = 1;
+        }
     }
 
     static void pro() {
-        Arrays.sort(num);
-        for (int i : num) sb.append(i).append('\n');
+        for (int i = 2000000; i >= 1000001; i--) {
+            if (cnt[i] == 1) sb.append(-(i - 1000000)).append('\n');
+        }
+        for (int i = 0; i <= 1000000; i++) {
+            if (cnt[i] == 1) sb.append(i).append('\n');
+        }
         System.out.print(sb);
     }
 
