@@ -5,32 +5,24 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static class Dot implements Comparable<Dot> {
-        public int x, y;
-
-        @Override
-        public int compareTo(Dot other) {
-            if (y != other.y) return y - other.y;
-            return x - other.x;
-        }
-    }
-
     static int N;
-    static Dot[] dots;
+    static int[][] arr;
 
     static void input() {
-        N = scan.nextInt();;
-        dots = new Dot[N];
+        N = scan.nextInt();
+        arr = new int[N][2];
         for (int i = 0; i < N; i++) {
-            dots[i] = new Dot();
-            dots[i].x = scan.nextInt();
-            dots[i].y = scan.nextInt();
+            arr[i][0] = scan.nextInt();
+            arr[i][1] = scan.nextInt();
         }
     }
 
     static void pro() {
-        Arrays.sort(dots);
-        for (Dot d : dots) sb.append(d.x).append(' ').append(d.y).append('\n');
+        Arrays.sort(arr, (e1, e2) -> {
+            if (e1[1] == e2[1]) return e1[0] - e2[0];
+            else return e1[1] - e2[1];
+        });
+        for (int i = 0; i < N; i++) sb.append(arr[i][0]).append(' ').append(arr[i][1]).append('\n');
         System.out.print(sb);
     }
 
