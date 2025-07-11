@@ -6,13 +6,12 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static class Member implements Comparable<Member> {
-        public int age, num;
+        public int age;
         public String name;
 
         @Override
         public int compareTo(Member other) {
-            if (age != other.age) return age - other.age;
-            return num - other.num;
+            return age - other.age;
         }
     }
 
@@ -24,7 +23,6 @@ public class Main {
         m = new Member[N];
         for (int i = 0; i < N; i++) {
             m[i] = new Member();
-            m[i].num = i;
             m[i].age = scan.nextInt();
             m[i].name = scan.next();
         }
