@@ -6,13 +6,9 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static String str;
-    static Stack<Character> stack;
-
-    static void input() {
-        stack = new Stack<>();
-    }
 
     static void pro() {
+        Stack<Character> stack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
             if (c == '(' || c == '[') stack.push(c);
@@ -40,7 +36,6 @@ public class Main {
         while (true) {
             str = scan.nextLine();
             if (str.length() == 1) break;
-            input();
             pro();
         }
         System.out.print(sb);
