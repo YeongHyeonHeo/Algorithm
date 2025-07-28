@@ -6,52 +6,32 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int n;
-    static int[] arr;
-    static char[] ans;
 
     static void input() {
         n = scan.nextInt();
-        arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = scan.nextInt();
-        ans = new char[n * 2];
     }
 
     static void pro() {
         Stack<Integer> stack = new Stack<>();
-        int idx = 0;
-        for (int i = 1; i <= arr[0]; i++) {
-            stack.push(i);
-            ans[idx++] = '+';
-        }
-        int recent = stack.pop();
-        ans[idx++] = '-';
+        int start = 0;
 
-        for (int i = 1; i < n; i++) {
-            if (!stack.empty()) {
-                if (stack.peek() == arr[i]) {
-                    stack.pop();
-                    ans[idx++] = '-';
-                } else if (stack.peek() < arr[i]) {
-                    for (int j = recent + 1; j <= arr[i]; j++) {
-                        stack.push(j);
-                        ans[idx++] = '+';
-                    }
-                    recent = stack.pop();
-                    ans[idx++] = '-';
-                } else {
-                    System.out.println("NO");
-                    return;
+        while (n-- > 0) {
+            int value = scan.nextInt();
+            if (start < value) {
+                for (int i = start + 1; i <= value; i++) {
+                    stack.push(i);
+                    sb.append('+').append('\n');
                 }
-            } else {
-                for (int j = recent + 1; j <= arr[i]; j++) {
-                    stack.push(j);
-                    ans[idx++] = '+';
-                }
-                recent = stack.pop();
-                ans[idx++] = '-';
+                start = value;
             }
+            else if (stack.peek() != value) {
+                System.out.println("NO");
+                return;
+            }
+
+            stack.pop();
+            sb.append('-').append('\n');
         }
-        for (char c : ans) sb.append(c).append('\n');
         System.out.print(sb);
     }
 
