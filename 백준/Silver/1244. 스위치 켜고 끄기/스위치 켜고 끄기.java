@@ -46,14 +46,14 @@ public class Main {
         // 한 줄에 20개씩 출력
         int cnt = 0;
         for (int i : arr) {
-            System.out.print(i + " ");
+            sb.append(i).append(' ');
             cnt++;
             if (cnt == 20) {
-                System.out.println();
+                sb.append('\n');
                 cnt = 0;
             }
         }
-
+        System.out.println(sb);
     }
 
     public static void main(String[] args) {
