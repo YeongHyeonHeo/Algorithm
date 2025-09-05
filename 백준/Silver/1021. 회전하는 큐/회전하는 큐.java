@@ -7,31 +7,21 @@ public class Main {
 
     static int N, M;
     static int[] arr;
-    static Deque<Integer> deque;
 
     static void input() {
         N = scan.nextInt();
         M = scan.nextInt();
         arr = new int[M];
         for (int i = 0; i < M; i++) arr[i] = scan.nextInt();
-        deque = new LinkedList<>();
-    }
-
-    static int findIdx(int find) {
-        int idx = 0;
-        for (int num : deque) {
-            if (num == find) break;
-            idx++;
-        }
-        return idx;
     }
 
     static void pro() {
+        LinkedList<Integer> deque = new LinkedList<>();
         for (int i = 1; i <= N; i++) deque.add(i);
 
         int ans = 0;
         for (int find : arr) {
-            int idx = findIdx(find);
+            int idx = deque.indexOf(find);
             if (idx > deque.size()/2) {
                 // 오른쪽 이동
                 while (deque.peek() != find) {
