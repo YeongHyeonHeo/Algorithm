@@ -16,20 +16,18 @@ public class Main {
 
     static void pro() {
         int ans = 1;
+        int[] check = new int[1000000];
 
         while (true) {
-            ArrayList<Integer> list = new ArrayList<>();
             boolean flag = true;
-
             for (int num : arr) {
                 int mod = num % ans;
-                if (list.contains(mod)) {
+                if (check[mod] == ans) {
                     flag = false;
                     break;
                 }
-                list.add(mod);
+                check[mod] = ans;
             }
-
             if (flag) break;
             ans++;
         }
