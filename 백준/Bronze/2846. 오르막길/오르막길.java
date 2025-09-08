@@ -15,18 +15,12 @@ public class Main {
     }
 
     static void pro() {
-        int ans = 0;
-        ArrayList<Integer> list = new ArrayList<>();
+        int ans = 0, sum = 0;
         for (int i = 1; i < N; i++) {
-            if (arr[i-1] >= arr[i]) {
-                if (list.size() > 0) ans = Math.max(ans, list.get(list.size()-1)-list.get(0));
-                list = new ArrayList<>();
-                continue;
-            }
-            list.add(arr[i-1]);
-            list.add(arr[i]);
+            if (arr[i-1] < arr[i]) sum += arr[i] - arr[i-1];
+            else sum = 0;
+            ans = Math.max(ans, sum);
         }
-        if (list.size() > 0) ans = Math.max(ans, list.get(list.size()-1)-list.get(0));
         System.out.println(ans);
     }
 
