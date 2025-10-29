@@ -3,11 +3,10 @@ import java.util.*;
 
 public class Main {
     static FastReader scan = new FastReader();
-    static StringBuilder sb = new StringBuilder();
 
     static int N, M;
-    static boolean[] visit;
-    static ArrayList<Integer>[] adj;
+    static boolean[] visit; // 방문 체크
+    static ArrayList<Integer>[] adj; // 인접한거
 
     static void input() {
         N = scan.nextInt();
@@ -46,7 +45,7 @@ public class Main {
         pro();
     }
 
-    static class FastReader {
+    static class FastReader{
         BufferedReader br;
         StringTokenizer st;
 
@@ -67,24 +66,6 @@ public class Main {
 
         int nextInt() {
             return Integer.parseInt(next());
-        }
-
-        long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        double nextDouble() {
-            return Double.parseDouble(next());
-        }
-
-        String nextLine() {
-            String str = "";
-            try {
-                str = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
         }
     }
 }
