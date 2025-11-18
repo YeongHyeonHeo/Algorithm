@@ -5,31 +5,37 @@ public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static String str;
+    static String s;
 
     static void input() {
-        str = scan.nextLine();
+        s = scan.nextLine();
     }
 
     static void pro() {
+        // 스택 사용
         Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '(') stack.push('(');
-            else {
+
+        // '(' 이면 스택에 push, ')' 이면 pop 하면서
+        // 다 진행했을 때 '('가 남거나
+        // 비어있는데 pop 하면 "NO"
+        // 다 진행했을 때 스택이 비어있으면 "YES"
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') stack.push('(');
+            if (s.charAt(i) == ')') {
                 if (stack.isEmpty()) {
-                    sb.append("NO\n");
+                    sb.append("NO").append('\n');
                     return;
-                }
-                else stack.pop();
+                } else stack.pop();
             }
         }
 
-        if (stack.isEmpty()) sb.append("YES\n");
-        else sb.append("NO\n");
+        if (stack.isEmpty()) sb.append("YES").append('\n');
+        else sb.append("NO").append('\n');
     }
 
     public static void main(String[] args) {
         int T = scan.nextInt();
+        // 테스트 수만큼 반복
         while (T-- > 0) {
             input();
             pro();
@@ -37,7 +43,7 @@ public class Main {
         System.out.print(sb);
     }
 
-    static class FastReader {
+    public static class FastReader {
         BufferedReader br;
         StringTokenizer st;
 
