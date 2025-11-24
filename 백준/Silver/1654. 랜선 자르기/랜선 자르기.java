@@ -15,10 +15,15 @@ public class Main {
         for (int i = 1; i <= K; i++) A[i] = scan.nextInt();
     }
 
+    // 매개변수 탐색
+    // 원래 문제: 랜선 N개를 만들 수 있는 랜선 최대 길이는 얼마?
+    // 뒤집은 문제: 랜선 최대 길이(어떤 길이)로 자르면 N개를 만들 수 있는가? Yes/No
     static boolean determination(long len) {
         long sum = 0;
-        for (int i = 1; i <= K; i++) sum += A[i] / len;
-        return sum >=  N;
+        for (int i = 1; i <= K; i++) {
+            if (A[i] >= len) sum += A[i] / len;
+        }
+        return sum >= N;
     }
 
     static void pro() {
@@ -59,24 +64,6 @@ public class Main {
 
         int nextInt() {
             return Integer.parseInt(next());
-        }
-
-        long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        double nextDouble() {
-            return Double.parseDouble(next());
-        }
-
-        String nextLine() {
-            String str = "";
-            try {
-                str = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
         }
     }
 }
