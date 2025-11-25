@@ -3,40 +3,34 @@ import java.util.*;
 
 public class Main {
     static FastReader scan = new FastReader();
-    static StringBuilder sb = new StringBuilder();
 
-    static int N, M;
-    static int[] arr;
+    static int N, M, ans;
+    static int[] find;
 
     static void input() {
         N = scan.nextInt();
         M = scan.nextInt();
-        arr = new int[M];
-        for (int i = 0; i < M; i++) arr[i] = scan.nextInt();
+        find = new int[M];
+        for (int i = 0; i < M; i++) find[i] = scan.nextInt();
     }
 
     static void pro() {
+        // 1 ~ N 까지 덱에 넣기
         LinkedList<Integer> deque = new LinkedList<>();
         for (int i = 1; i <= N; i++) deque.add(i);
 
-        int ans = 0;
-        for (int find : arr) {
-            int idx = deque.indexOf(find);
-            if (idx > deque.size()/2) {
-                // 오른쪽 이동
-                while (deque.peek() != find) {
-                    deque.addFirst(deque.pollLast());
-                    ans++;
-                }
-            } else {
-                // 왼쪽 이동
-                while (deque.peek() != find) {
-                    deque.add(deque.poll());
-                    ans++;
-                }
+        // find 배열(뽑아낼 수의 위치) 하나씩 순회하면서 계산
+        for (int num : find) {
+            int idx = deque.indexOf(num);
+            while (idx != 0) {
+                if (idx <= deque.size() / 2) deque.addLast(deque.pollFirst());
+                else deque.addFirst(deque.pollLast());
+                ans++;
+                idx = deque.indexOf(num);
             }
-            deque.poll();
+            deque.pollFirst();
         }
+
         System.out.println(ans);
     }
 
@@ -66,16 +60,6 @@ public class Main {
 
         int nextInt() {
             return Integer.parseInt(next());
-        }
-
-        String nextLine() {
-            String str = "";
-            try {
-                str = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
         }
     }
 }
