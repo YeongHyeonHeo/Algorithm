@@ -22,18 +22,10 @@ public class Main {
 
         int ans = 0; // 매수해야 하는 사람의 최솟값
         // 기호 1번 투표 수가 가장 많을 때까지 반복
-        while (true) {
-            // 후보가 1명이라면 진행 X
-            if (pq.isEmpty()) break;
-
-            int max = pq.poll(); // 기호 1번 제외한 가장 많은 투표 수
-            if (max < arr[0]) break;
-            else {
-                // 매수 후 다시 pq에 넣기
-                pq.add(--max);
-                arr[0]++;
-                ans++;
-            }
+        while (!pq.isEmpty() && pq.peek() >= arr[0]) {
+            pq.add(pq.poll() - 1);
+            arr[0]++;
+            ans++;
         }
 
         System.out.println(ans);
