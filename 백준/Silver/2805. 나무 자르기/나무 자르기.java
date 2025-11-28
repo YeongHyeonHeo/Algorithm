@@ -1,10 +1,8 @@
 import java.io.*;
-import java.rmi.MarshalException;
 import java.util.*;
 
 public class Main {
     static FastReader scan = new FastReader();
-    static StringBuilder sb = new StringBuilder();
 
     static int N, M;
     static int[] A;
