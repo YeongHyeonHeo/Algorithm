@@ -11,15 +11,18 @@ public class Main {
     }
 
     static void pro() {
+        // 1 ~ N 까지 모든 경우를 탐색
+        // 생성자 찾으면 탈출
         for (int i = 1; i <= N; i++) {
-            int n = i;
+            int sum = i; // 분해합
             String num = Integer.toString(i);
-            for (int j = 0; j < num.length(); j++) n += num.charAt(j) - '0';
-            if (n == N) {
+            for (int j = 0; j < num.length(); j++) sum += (num.charAt(j) - '0');
+            if (sum == N) { // 생성자라면
                 System.out.println(i);
                 return;
             }
         }
+        // 생성자 없는 경우
         System.out.println(0);
     }
 
@@ -49,16 +52,6 @@ public class Main {
 
         int nextInt() {
             return Integer.parseInt(next());
-        }
-
-        String nextLine() {
-            String str = "";
-            try {
-                str = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
         }
     }
 }
