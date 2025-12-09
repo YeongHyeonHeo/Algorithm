@@ -54,7 +54,7 @@ public class Main {
         Collections.sort(group);
         sb.append(group.size()).append('\n');
         for (int cnt : group) sb.append(cnt).append('\n');
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
     public static void main(String[] args) {
@@ -83,14 +83,6 @@ public class Main {
 
         int nextInt() {
             return Integer.parseInt(next());
-        }
-
-        long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        double nextDouble() {
-            return Double.parseDouble(next());
         }
 
         String nextLine() {
