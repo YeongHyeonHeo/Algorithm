@@ -8,8 +8,8 @@ public class Main {
     static int[] find;
 
     static void input() {
-        N = scan.nextInt();
-        M = scan.nextInt();
+        N = scan.nextInt(); // 큐의 크기
+        M = scan.nextInt(); // 뽑아내려고 하는 수의 개수
         find = new int[M];
         for (int i = 0; i < M; i++) find[i] = scan.nextInt();
     }
